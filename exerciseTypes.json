@@ -28,4 +28,7 @@
 }, {
   "name" : "Golf",
   "calorieCost" : 317
+}, {
+  "name" : "Handball",
+  "calorieCost" : 844
 } ]

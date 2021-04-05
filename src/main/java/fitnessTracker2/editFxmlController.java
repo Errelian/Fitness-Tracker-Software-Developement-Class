@@ -45,8 +45,6 @@ public class editFxmlController implements Initializable {
 
     private void readCalorie(){
 
-        exerciseCalorieField.setTextFormatter(new TextFormatter<>(new IntegerStringConverter())); //hogy integer legyen
-
         System.out.println("Jó 1");
 
         String something;
@@ -66,17 +64,12 @@ public class editFxmlController implements Initializable {
     @FXML
     private void saveExerciseType(ActionEvent event) throws IOException {
 
-        //readCalorie();
+        readCalorie();
 
-        //readName();
+        readName();
 
-        //System.out.println(tempCalorie.toString() + tempExercise);
 
-        exerciseCalorieField.getText(); //NPE
-
-        exerciseNameField.getText(); //NPE
-
-        /*exercise exerciseToBeAdded = new exercise(tempExercise, tempCalorie);
+        exercise exerciseToBeAdded = new exercise(tempExercise, tempCalorie);
 
         exerciseWrapper.exerciseArrayList.add(exerciseToBeAdded);
 
@@ -85,7 +78,7 @@ public class editFxmlController implements Initializable {
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
         ArrayList<exercise> exerciseArrayNonStatic = exerciseWrapper.exerciseArrayList;
-        writer.writeValue(Paths.get("exerciseTypes.json").toFile(), exerciseArrayNonStatic);*/
+        writer.writeValue(Paths.get("exerciseTypes.json").toFile(), exerciseArrayNonStatic);
 
         final Node source = (Node) event.getSource();
 
