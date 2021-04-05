@@ -1,7 +1,7 @@
 [ {
   "code" : 1,
   "name" : "Reggeli Aerobic 1",
-  "startDate" : 1617473195.340123200,
+  "startDate" : [ 2021, 4, 5 ],
   "exerciseDuration" : 7200.000000000,
   "exerciseType" : {
     "name" : "Aerobic",
@@ -12,7 +12,7 @@
 }, {
   "code" : 2,
   "name" : "Délutáni Íjászat",
-  "startDate" : 1617491195.341140700,
+  "startDate" : [ 2021, 4, 5 ],
   "exerciseDuration" : 7200.000000000,
   "exerciseType" : {
     "name" : "Archery",

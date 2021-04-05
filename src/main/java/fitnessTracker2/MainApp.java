@@ -57,7 +57,7 @@ public class MainApp extends Application {
 
         exerciseWrapper.exerciseArrayList = exerciseArrayListNonStatic;
 
-        //System.out.println(exerciseWrapper.exerciseArrayList);
+        //System.out.println(exerciseSessionWrapper.exerciseSessionArrayList);
 
         launch(args);
     }

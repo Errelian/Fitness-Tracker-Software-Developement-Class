@@ -1,5 +1,6 @@
 package fitnessTracker2;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -12,20 +13,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class test {
-    public static void main01(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
-       /* exercise Type1 = new exercise("Aerobic", 457);
+        /*
+        exercise Type1 = new exercise("Aerobic", 457);
 
         exercise Type2 = new exercise("Archery", 246);
 
-        exerciseSession Sess1 = new exerciseSession(1, "Reggeli Aerobic 1", ZonedDateTime.now(), Duration.ofHours(2), Type1, 914.0, 1);
+        exerciseSession Sess1 = new exerciseSession(1, "Reggeli Aerobic 1", LocalDate.now(), Duration.ofHours(2), Type1, 914.0, 1);
 
-        exerciseSession Sess2 = new exerciseSession(2, "Délutáni Íjászat",ZonedDateTime.now().plus(Duration.ofHours(5)), Duration.ofHours(2), Type2, 592.0, 1);
+        exerciseSession Sess2 = new exerciseSession(2, "Délutáni Íjászat",LocalDate.now(), Duration.ofHours(2), Type2, 592.0, 1);
 
         exerciseSessionWrapper exerciseSessionArray = new exerciseSessionWrapper(Sess1);
 
@@ -37,11 +41,13 @@ public class test {
 
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
 
-        writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArray);
+        ArrayList<exerciseSession> asd = exerciseSessionWrapper.exerciseSessionArrayList;
 
-        exerciseSessionWrapper testArray = objectMapper.readValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionWrapper.class);
+        writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), asd);
 
-        System.out.println(testArray);*/
+        ArrayList<exerciseSession> asd2 = objectMapper.readValue(Paths.get("exerciseTypeTest1.json").toFile(),new TypeReference<ArrayList<exerciseSession>>() {});
+
+        System.out.println(asd2);*/
 
         //String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(exerciseSessionArray);
 
@@ -93,5 +99,9 @@ public class test {
         ArrayList<exercise> exerciseArrayListNonStatic = exerciseWrapper.exerciseArrayList;
 
         writer.writeValue(Paths.get("exerciseTypes.json").toFile(), exerciseArrayListNonStatic);*/
+
+        //System.out.println(LocalDate.now());
+
+        //System.out.println(ZonedDateTime.now());
     }
 }
