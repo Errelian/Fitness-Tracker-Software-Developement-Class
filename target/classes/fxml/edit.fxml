@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitnessTracker2.editFxmlController">
+   <children>
+      <TextField id="exerciseNameField" layoutX="42.0" layoutY="47.0" promptText="Exercise Name" />
+      <TextField id="exerciseCalorieField" layoutX="42.0" layoutY="151.0" promptText="Calories burned per hour per 70kg" />
+      <Button id="saveButton" layoutX="91.0" layoutY="246.0" mnemonicParsing="false" onAction="#saveExerciseType" text="Save" />
+   </children>
+</AnchorPane>
