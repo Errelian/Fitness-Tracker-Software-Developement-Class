@@ -45,17 +45,17 @@ public class editFxmlController implements Initializable {
 
     private void readCalorie(){
 
-        System.out.println("Jó 1");
+        //System.out.println("Jó 1");
 
         String something;
 
         something = exerciseCalorieField.getText();
 
-        System.out.println("Jó 2");
+        //System.out.println("Jó 2");
 
         tempCalorie = Integer.valueOf(something);
 
-        System.out.println("Jó 3");
+        //System.out.println("Jó 3");
 
 
     }
