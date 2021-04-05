@@ -58,7 +58,7 @@ public class editFxmlController implements Initializable {
 
         //System.out.println("Jó 2");
 
-        if ( !(something.equals(null)) && !(something.equals("")) && inputChecker.onlyInteger(something) ) {
+        if (something != null && !(something.equals("")) && inputChecker.onlyInteger(something) ) {
 
             tempCalorie = Integer.valueOf(something);
 
