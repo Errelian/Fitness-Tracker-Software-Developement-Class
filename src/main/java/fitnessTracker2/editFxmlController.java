@@ -10,10 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
-import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,9 +20,17 @@ import java.util.ResourceBundle;
 
 public class editFxmlController implements Initializable {
 
-    public String tempExercise;
+    public String tempExercise = "";
 
-    public Integer tempCalorie;
+    public Integer tempCalorie = -1;
+
+    @FXML
+    public void onClickTextField(){
+
+        exerciseCalorieField.setPromptText("Calories burned per hour per 70kg");
+
+        exerciseNameField.setPromptText("Exercise Name");
+    }
 
     @FXML
     public TextField exerciseNameField;
@@ -36,14 +41,14 @@ public class editFxmlController implements Initializable {
     @FXML
     public javafx.scene.control.Button saveButton;
 
-    private void readName(){
+    private boolean readName(){
 
         tempExercise = exerciseNameField.getText(); //bármilyen sztringet elfogad, nem látom értelméd a számok kiszűrésének
 
-
+        return true;
     }
 
-    private void readCalorie(){
+    private boolean readCalorie(){
 
         //System.out.println("Jó 1");
 
@@ -53,8 +58,20 @@ public class editFxmlController implements Initializable {
 
         //System.out.println("Jó 2");
 
-        tempCalorie = Integer.valueOf(something);
+        if ( !(something.equals(null)) && !(something.equals("")) && inputChecker.onlyInteger(something) ) {
 
+            tempCalorie = Integer.valueOf(something);
+
+            return true;
+        }
+        else
+        {
+
+            exerciseCalorieField.clear();
+            exerciseCalorieField.setPromptText("Invalid input!");
+
+            return false;
+        }
         //System.out.println("Jó 3");
 
 
@@ -64,27 +81,34 @@ public class editFxmlController implements Initializable {
     @FXML
     private void saveExerciseType(ActionEvent event) throws IOException {
 
-        readCalorie();
+        if (readCalorie() && readName()) {
 
-        readName();
+            exercise exerciseToBeAdded = new exercise(tempExercise, tempCalorie);
 
+            exerciseWrapper.exerciseArrayList.add(exerciseToBeAdded);
 
-        exercise exerciseToBeAdded = new exercise(tempExercise, tempCalorie);
+            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
-        exerciseWrapper.exerciseArrayList.add(exerciseToBeAdded);
+            ArrayList<exercise> exerciseArrayNonStatic = exerciseWrapper.exerciseArrayList;
+            writer.writeValue(Paths.get("exerciseTypes.json").toFile(), exerciseArrayNonStatic);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+            final Node source = (Node) event.getSource();
+            final Stage stage = (Stage) source.getScene().getWindow(); //fogalmam sincs hogy miért csak így jó
 
-        ArrayList<exercise> exerciseArrayNonStatic = exerciseWrapper.exerciseArrayList;
-        writer.writeValue(Paths.get("exerciseTypes.json").toFile(), exerciseArrayNonStatic);
+            stage.close();
+        }
+        else
+        {
+            exerciseCalorieField.clear();
 
-        final Node source = (Node) event.getSource();
+            exerciseNameField.clear();
 
-        final Stage stage = (Stage) source.getScene().getWindow(); //fogalmam sincs hogy miért csak így jó
+            exerciseCalorieField.setPromptText("Invalid input!");
 
-        stage.close();
+            exerciseNameField.setPromptText("Invalid input!");
+        }
     }
 
 

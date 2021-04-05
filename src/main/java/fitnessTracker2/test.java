@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class test {
-    public static void main(String[] args) throws IOException {
+    public static void main01(String[] args) throws IOException {
 
        /* exercise Type1 = new exercise("Aerobic", 457);
 
