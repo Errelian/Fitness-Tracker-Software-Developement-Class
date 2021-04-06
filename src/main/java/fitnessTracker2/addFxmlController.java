@@ -7,22 +7,63 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class addFxmlController implements Initializable {
 
+    @FXML
     public ChoiceBox<String> exerciseTypeChoiceBox;
+
+    @FXML
     public TextField exerciseSessionNameField;
+    @FXML
+    public TextField exerciseDurationNameField;
+
+    @FXML
     public DatePicker datePicker;
 
-    private String tempExerciseString = "";
 
 
+    private String tempString = "";
+
+    private Double tempCalories;
+    private Duration tempDuration;
     private exercise tempExercise;
     private Integer tempCode;
     private String tempName;
     private LocalDate tempDate;
+
+    private boolean readDuration(){
+        tempString = "";
+        tempString = exerciseDurationNameField.getText();
+
+        if(tempString != null && !(tempString.equals("")) && inputChecker.onlyFloat(tempString))
+        {
+             double tempDouble = Double.parseDouble(tempString);
+             if (tempDouble < 73.0)
+             {
+                 Long tempLong = Math.round(3600 * tempDouble);
+
+                 //System.out.println(tempLong);
+
+                 tempDuration = Duration.ofSeconds(tempLong);
+                 System.out.println(tempDuration);
+
+                 return true;
+             }
+             else
+             {
+                return false;
+             }
+
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     private boolean readDate(){
 
@@ -56,14 +97,14 @@ public class addFxmlController implements Initializable {
     }
 
     private boolean readExerciseChoiceBox(){
-
+        tempString = "";
         if (exerciseTypeChoiceBox.getValue() != null)
         {
-            tempExerciseString = (String) exerciseTypeChoiceBox.getValue();
+            tempString = (String) exerciseTypeChoiceBox.getValue();
 
-            if( !(tempExerciseString.equals("")) ) {
+            if( !(tempString.equals("")) ) {
                 for (int i = 0; i < exerciseWrapper.exerciseArrayList.size(); i++) {
-                    if (tempExerciseString.equals(exerciseWrapper.exerciseArrayList.get(i).getName())) {
+                    if (tempString.equals(exerciseWrapper.exerciseArrayList.get(i).getName())) {
                         tempExercise = exerciseWrapper.exerciseArrayList.get(i);
 
                         //System.out.println(tempExercise);
@@ -76,6 +117,14 @@ public class addFxmlController implements Initializable {
         return false;
     }
 
+    private boolean readIntesityChoiceBox(){
+        return true;
+    }
+
+    private boolean setCalories(){
+        return true;
+    }
+
     @FXML
     public void saveButtonAction(){
 
@@ -86,6 +135,8 @@ public class addFxmlController implements Initializable {
         readName();
 
         readDate();
+
+        readDuration();
         //TODO
     }
 
