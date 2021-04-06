@@ -19,7 +19,7 @@ public class exerciseSessionWrapper {
     public exerciseSessionWrapper() {
     }
 
-    public void append(exerciseSession exerciseSession){
+    public static void append(exerciseSession exerciseSession){
 
         exerciseSessionArrayList.add(exerciseSession);
 

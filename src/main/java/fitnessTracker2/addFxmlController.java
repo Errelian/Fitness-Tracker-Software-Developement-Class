@@ -1,20 +1,33 @@
 package fitnessTracker2;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class addFxmlController implements Initializable {
 
     @FXML
     public ChoiceBox<String> exerciseTypeChoiceBox;
+    @FXML
+    public ChoiceBox<String> intensityChoicebox;
 
     @FXML
     public TextField exerciseSessionNameField;
@@ -34,6 +47,15 @@ public class addFxmlController implements Initializable {
     private Integer tempCode;
     private String tempName;
     private LocalDate tempDate;
+    private Double tempIntensity;
+
+    private Map intensityMap = new HashMap();
+    private void initializeMap(){
+        intensityMap.put("Low Intesity", 0.75);
+        intensityMap.put("Normal Intesity", 1.0);
+        intensityMap.put("High Intesity", 1.25);
+    }
+
 
     private boolean readDuration(){
         tempString = "";
@@ -49,7 +71,7 @@ public class addFxmlController implements Initializable {
                  //System.out.println(tempLong);
 
                  tempDuration = Duration.ofSeconds(tempLong);
-                 System.out.println(tempDuration);
+                 //System.out.println(tempDuration);
 
                  return true;
              }
@@ -100,7 +122,7 @@ public class addFxmlController implements Initializable {
         tempString = "";
         if (exerciseTypeChoiceBox.getValue() != null)
         {
-            tempString = (String) exerciseTypeChoiceBox.getValue();
+            tempString = exerciseTypeChoiceBox.getValue();
 
             if( !(tempString.equals("")) ) {
                 for (int i = 0; i < exerciseWrapper.exerciseArrayList.size(); i++) {
@@ -117,27 +139,62 @@ public class addFxmlController implements Initializable {
         return false;
     }
 
-    private boolean readIntesityChoiceBox(){
-        return true;
+    private boolean readIntensityChoiceBox(){
+        tempString = "";
+        if (intensityChoicebox.getValue() != null)
+        {
+            tempString = intensityChoicebox.getValue();
+
+            if( !(tempString.equals("")) ) {
+                tempIntensity = (Double) intensityMap.getOrDefault(tempString, "1.00");
+
+                //System.out.print(tempIntensity);
+                return true;
+            }
+        }
+            return false;
     }
 
     private boolean setCalories(){
-        return true;
+
+        if (tempExercise !=null) {
+
+            tempCalories = (profileWrapper.profile.getWeight() / 70.0) * tempExercise.getCalorieCost() * tempIntensity;
+
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @FXML
-    public void saveButtonAction(){
+    public void saveButtonAction() throws IOException {
 
-        readExerciseChoiceBox();
+        if(readExerciseChoiceBox() && setCode() && readName() && readDate() && readDuration() && readIntensityChoiceBox() && setCalories())
+        {
+            exerciseSession tempSession = new exerciseSession(tempCode, tempName,tempDate,tempDuration,tempExercise, tempCalories, tempIntensity);
 
-        setCode();
+            //System.out.println(tempSession);
 
-        readName();
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
 
-        readDate();
+            ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
 
-        readDuration();
-        //TODO
+            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+
+
+            exerciseSessionWrapper.append(tempSession);
+
+            ArrayList<exerciseSession> exerciseSessionArrayListNonStatic = exerciseSessionWrapper.exerciseSessionArrayList;
+
+            writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayListNonStatic);
+        }
+        else
+        {
+            
+        }
     }
 
     @Override
@@ -148,5 +205,9 @@ public class addFxmlController implements Initializable {
         exerciseTypeChoiceBox.getItems().add(exerciseWrapper.exerciseArrayList.get(i).getName()); //a choice box választásainak beállítása
     }
 
+    intensityChoicebox.getItems().add("Low Intesity");
+    intensityChoicebox.getItems().add("Normal Intesity");
+    intensityChoicebox.getItems().add("High Intesity");
+    initializeMap();
     }
 }

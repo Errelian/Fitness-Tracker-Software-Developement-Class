@@ -22,8 +22,8 @@ import java.util.Collections;
 public class test {
     public static void main(String[] args) throws IOException {
 
-        /*
-        exercise Type1 = new exercise("Aerobic", 457);
+
+        /*exercise Type1 = new exercise("Aerobic", 457);
 
         exercise Type2 = new exercise("Archery", 246);
 
@@ -103,5 +103,11 @@ public class test {
         //System.out.println(LocalDate.now());
 
         //System.out.println(ZonedDateTime.now());
+
+        /*profile profile = new profile("Jonathan Joestar", 70.0);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(Paths.get("profile.json").toFile(), profile);*/
     }
 }

@@ -1,7 +1,7 @@
 [ {
   "code" : 1,
   "name" : "Reggeli Aerobic 1",
-  "startDate" : [ 2021, 4, 5 ],
+  "startDate" : [ 2021, 4, 6 ],
   "exerciseDuration" : 7200.000000000,
   "exerciseType" : {
     "name" : "Aerobic",
@@ -12,12 +12,34 @@
 }, {
   "code" : 2,
   "name" : "Délutáni Íjászat",
-  "startDate" : [ 2021, 4, 5 ],
+  "startDate" : [ 2021, 4, 6 ],
   "exerciseDuration" : 7200.000000000,
   "exerciseType" : {
     "name" : "Archery",
     "calorieCost" : 246
   },
   "burnedCalories" : 592.0,
+  "intensity" : 1.0
+}, {
+  "code" : 3,
+  "name" : "Túrázgatás",
+  "startDate" : [ 2021, 4, 6 ],
+  "exerciseDuration" : 9000.000000000,
+  "exerciseType" : {
+    "name" : "Hiking",
+    "calorieCost" : 493
+  },
+  "burnedCalories" : 493.0,
+  "intensity" : 1.0
+}, {
+  "code" : 4,
+  "name" : "Túrázgatás 2",
+  "startDate" : [ 2021, 4, 6 ],
+  "exerciseDuration" : 360.000000000,
+  "exerciseType" : {
+    "name" : "Hiking",
+    "calorieCost" : 493
+  },
+  "burnedCalories" : 493.0,
   "intensity" : 1.0
 } ]

@@ -59,6 +59,12 @@ public class MainApp extends Application {
 
         //System.out.println(exerciseSessionWrapper.exerciseSessionArrayList);
 
+        profile profile = objectMapper.readValue(Paths.get("profile.json").toFile(), new TypeReference<profile>() {});
+
+        profileWrapper.profile = profile;
+
+        //System.out.println(profileWrapper.profile);
+
         launch(args);
     }
 
