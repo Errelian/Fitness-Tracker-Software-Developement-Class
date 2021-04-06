@@ -108,6 +108,20 @@ public class FXMLController implements Initializable {
 
     }
 
+    @FXML
+    private void profileButtonAction(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/fxml/profile.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Stage stage = new Stage();
+
+        stage.setResizable(false);
+        stage.setTitle("Overwrite previous profile!");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

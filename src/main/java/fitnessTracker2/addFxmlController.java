@@ -6,11 +6,14 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +30,7 @@ public class addFxmlController implements Initializable {
     @FXML
     public ChoiceBox<String> exerciseTypeChoiceBox;
     @FXML
-    public ChoiceBox<String> intensityChoicebox;
+    public ChoiceBox<String> intensityChoiceBox;
 
     @FXML
     public TextField exerciseSessionNameField;
@@ -141,9 +144,9 @@ public class addFxmlController implements Initializable {
 
     private boolean readIntensityChoiceBox(){
         tempString = "";
-        if (intensityChoicebox.getValue() != null)
+        if (intensityChoiceBox.getValue() != null)
         {
-            tempString = intensityChoicebox.getValue();
+            tempString = intensityChoiceBox.getValue();
 
             if( !(tempString.equals("")) ) {
                 tempIntensity = (Double) intensityMap.getOrDefault(tempString, "1.00");
@@ -169,7 +172,7 @@ public class addFxmlController implements Initializable {
     }
 
     @FXML
-    public void saveButtonAction() throws IOException {
+    public void saveButtonAction(ActionEvent event) throws IOException {
 
         if(readExerciseChoiceBox() && setCode() && readName() && readDate() && readDuration() && readIntensityChoiceBox() && setCalories())
         {
@@ -179,9 +182,7 @@ public class addFxmlController implements Initializable {
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
-
             ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-
             objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
 
@@ -190,11 +191,27 @@ public class addFxmlController implements Initializable {
             ArrayList<exerciseSession> exerciseSessionArrayListNonStatic = exerciseSessionWrapper.exerciseSessionArrayList;
 
             writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayListNonStatic);
+
+            final Node source = (Node) event.getSource();
+            final Stage stage = (Stage) source.getScene().getWindow(); //fogalmam sincs hogy miért csak így jó
+
+            stage.close();
+
         }
         else
         {
-            
+            exerciseSessionNameField.clear();
+            exerciseDurationNameField.clear();
+
+            exerciseSessionNameField.setPromptText("Invalid Input!");
+            exerciseDurationNameField.setPromptText("Invalid Input!");
         }
+    }
+
+    @FXML
+    public void onClickReset(){
+        exerciseSessionNameField.setPromptText("Session Name");
+        exerciseDurationNameField.setPromptText("Session length in hours");
     }
 
     @Override
@@ -205,9 +222,9 @@ public class addFxmlController implements Initializable {
         exerciseTypeChoiceBox.getItems().add(exerciseWrapper.exerciseArrayList.get(i).getName()); //a choice box választásainak beállítása
     }
 
-    intensityChoicebox.getItems().add("Low Intesity");
-    intensityChoicebox.getItems().add("Normal Intesity");
-    intensityChoicebox.getItems().add("High Intesity");
+    intensityChoiceBox.getItems().add("Low Intesity");
+    intensityChoiceBox.getItems().add("Normal Intesity");
+    intensityChoiceBox.getItems().add("High Intesity");
     initializeMap();
     }
 }

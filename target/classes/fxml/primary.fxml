@@ -12,5 +12,6 @@
       <Button layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#addButtonAction" prefHeight="25.0" prefWidth="63.0" text="Add" />
       <Canvas height="200.0" layoutX="25.0" layoutY="-246.0" width="200.0" />
       <Button layoutX="108.0" layoutY="56.0" mnemonicParsing="false" onAction="#editButtonAction" prefHeight="25.0" prefWidth="63.0" text="Edit" />
+      <Button layoutX="14.0" layoutY="100.0" mnemonicParsing="false" onAction="#profileButtonAction" prefHeight="25.0" prefWidth="63.0" text="Profile" />
     </children>
 </AnchorPane>

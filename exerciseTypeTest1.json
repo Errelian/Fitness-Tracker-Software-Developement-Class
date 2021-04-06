@@ -42,4 +42,15 @@
   },
   "burnedCalories" : 493.0,
   "intensity" : 1.0
+}, {
+  "code" : 5,
+  "name" : "Lezárási Tesztelgetés",
+  "startDate" : [ 2021, 4, 6 ],
+  "exerciseDuration" : 3600.000000000,
+  "exerciseType" : {
+    "name" : "Archery",
+    "calorieCost" : 246
+  },
+  "burnedCalories" : 184.5,
+  "intensity" : 0.75
 } ]
