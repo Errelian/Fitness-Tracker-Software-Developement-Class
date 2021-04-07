@@ -101,7 +101,6 @@ public class FXMLController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         Stage stage = new Stage();
 
-        stage.setResizable(false);
         stage.setTitle("Add a New Exercise Type!");
         stage.setScene(scene);
         stage.show();
@@ -116,8 +115,21 @@ public class FXMLController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         Stage stage = new Stage();
 
-        stage.setResizable(false);
         stage.setTitle("Overwrite previous profile!");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void graphButtonAction(ActionEvent event) throws IOException{
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/fxml/graph.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load(), 1366, 768);
+        Stage stage = new Stage();
+
+        stage.setTitle("Graphing Window");
         stage.setScene(scene);
         stage.show();
     }

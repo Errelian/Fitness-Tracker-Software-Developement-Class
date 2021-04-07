@@ -5,28 +5,28 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
 
-public class profileController {
+public class profileController implements Initializable {
 
     @FXML
     public TextField profileNameTextField;
     @FXML
     public TextField bodyWeightTextField;
 
-    private String tempName;
-    private String tempWeightString;
-
     @FXML
     public void saveButtonAction(ActionEvent event) throws IOException {
-        tempName = profileNameTextField.getText();
-        tempWeightString = bodyWeightTextField.getText();
+        String tempName = profileNameTextField.getText();
+        String tempWeightString = bodyWeightTextField.getText();
 
         if (inputChecker.onlyFloat(tempWeightString))
         {
@@ -56,4 +56,8 @@ public class profileController {
         bodyWeightTextField.setPromptText("Enter your body weight!");
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
