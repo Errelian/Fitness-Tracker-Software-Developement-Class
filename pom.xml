@@ -2,6 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <developers>
+        <developer>
+            <id>gobal</id>
+            <name>Balázs Görög</name>
+            <email>balazsgorog4@gmail.com</email>
+        </developer>
+    </developers>
+    <description>
+        A short project that hopefully can help in tracking a workout routine over time.
+    </description>
+
     <groupId>fitnessTracker2</groupId>
     <artifactId>fitnessTracker2</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -11,8 +22,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>fitnessTracker2.MainApp</mainClass>
+        <maven.compiler.release>16</maven.compiler.release>
+        <exec.mainClass>fitnessTracker2.MainApp</exec.mainClass>
     </properties>
+
+    <scm>
+        <developerConnection>scm:svn:https://github.com/Errelian/Fitness-Tracker-Software-Developement-Class</developerConnection>
+    </scm>
+
 
     <dependencies>
 
