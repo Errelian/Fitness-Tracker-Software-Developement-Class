@@ -1,15 +1,7 @@
 package fitnessTracker2;
-/*
-Put header here
 
-
- */
-
-import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.time.Duration;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -26,14 +18,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.pmw.tinylog.Logger;
 
 public class FXMLController implements Initializable {
 
     @FXML
-    private void loadButtonAction(ActionEvent event) throws IOException {
+    private void loadButtonAction(ActionEvent event) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -55,7 +46,7 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    private void saveButtonAction(ActionEvent event) throws IOException {
+    private void saveButtonAction(ActionEvent event) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         objectMapper.registerModule(new JavaTimeModule());
@@ -75,7 +66,7 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    private void addButtonAction(ActionEvent event) throws IOException {
+    private void addButtonAction(ActionEvent event) {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/add.fxml"));
@@ -98,7 +89,7 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    private void editButtonAction(ActionEvent event) throws IOException{
+    private void editButtonAction(ActionEvent event) {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/edit.fxml"));
@@ -121,7 +112,7 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    private void profileButtonAction(ActionEvent event) throws IOException{
+    private void profileButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/profile.fxml"));
 
@@ -143,7 +134,7 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    private void graphButtonAction(ActionEvent event) throws IOException{
+    private void graphButtonAction(ActionEvent event) {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/graph.fxml"));

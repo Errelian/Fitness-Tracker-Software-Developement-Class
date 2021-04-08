@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 
 import org.pmw.tinylog.Logger;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.Duration;
@@ -49,7 +47,7 @@ public class MainApp extends Application {
         return fxmlLoader.load();
     }
 
-        public static void main (String[]args) throws IOException {
+        public static void main (String[]args) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -113,7 +111,6 @@ public class MainApp extends Application {
             }
 
         }
-        //System.out.println(exerciseSessionWrapper.exerciseSessionArrayList);
 
             try {
                 profile profile = objectMapper.readValue(Paths.get("profile.json").toFile(), new TypeReference<profile>() {});
