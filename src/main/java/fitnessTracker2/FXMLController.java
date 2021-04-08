@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,7 +83,7 @@ public class FXMLController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/add.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
 
         stage.setResizable(false);
@@ -98,7 +99,7 @@ public class FXMLController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/edit.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
 
         stage.setTitle("Add a New Exercise Type!");
@@ -112,7 +113,7 @@ public class FXMLController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/profile.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
 
         stage.setTitle("Overwrite previous profile!");
@@ -126,12 +127,18 @@ public class FXMLController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/graph.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 1366, 768);
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
 
         stage.setTitle("Graphing Window");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void exitButtonAction(ActionEvent event){
+        Platform.exit();
+        System.exit(0);
     }
 
     @Override
