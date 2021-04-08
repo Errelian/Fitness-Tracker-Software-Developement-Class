@@ -14,6 +14,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.pmw.tinylog.Logger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -76,10 +77,12 @@ public class addFxmlController implements Initializable {
                  tempDuration = Duration.ofSeconds(tempLong);
                  //System.out.println(tempDuration);
 
+                 Logger.info("Duration successfully read");
                  return true;
              }
              else
              {
+                 Logger.warn("Duration reading unsuccessful!");
                 return false;
              }
 
@@ -96,11 +99,12 @@ public class addFxmlController implements Initializable {
 
         if (tempDate != null)
         {
-            //System.out.println(tempDate);
+            Logger.info("Date successfully read!");
             return true;
         }
         else
         {
+            Logger.warn("Date reading unsuccessful!");
             return false;
         }
     }
@@ -108,7 +112,7 @@ public class addFxmlController implements Initializable {
     private boolean readName(){
         tempName = exerciseSessionNameField.getText(); //bármilyen sztringet elfogad, nem látom értelméd a számok kiszűrésének
 
-        //System.out.println(tempName);
+        Logger.info("Name, successfully read!");
 
         return true;
     }
@@ -116,7 +120,7 @@ public class addFxmlController implements Initializable {
     private boolean setCode() {
         tempCode =  exerciseSessionWrapper.exerciseSessionArrayList.get(exerciseSessionWrapper.exerciseSessionArrayList.size() - 1).getCode() + 1;
 
-        //System.out.println(tempCode);
+        Logger.info("Code successfully set!");
 
         return true;
     }
@@ -132,13 +136,14 @@ public class addFxmlController implements Initializable {
                     if (tempString.equals(exerciseWrapper.exerciseArrayList.get(i).getName())) {
                         tempExercise = exerciseWrapper.exerciseArrayList.get(i);
 
-                        //System.out.println(tempExercise);
+                        Logger.info("Exercise type successfully read!");
 
                         return true;
                     }
                 }
             }
         }
+        Logger.warn("Exercise type reading unsuccessful!");
         return false;
     }
 
@@ -151,10 +156,11 @@ public class addFxmlController implements Initializable {
             if( !(tempString.equals("")) ) {
                 tempIntensity = (Double) intensityMap.getOrDefault(tempString, "1.00");
 
-                //System.out.print(tempIntensity);
+                Logger.info("Intensity reading successful!");
                 return true;
             }
         }
+            Logger.warn("Intensity reading unsuccessful!");
             return false;
     }
 
@@ -164,9 +170,11 @@ public class addFxmlController implements Initializable {
 
             tempCalories = (profileWrapper.profile.getWeight() / 70.0) * tempExercise.getCalorieCost() * tempIntensity;
 
+            Logger.info("Calorie reading successful!");
             return true;
         }
         else {
+            Logger.warn("Calorie reading unsuccessful!");
             return false;
         }
     }
@@ -187,15 +195,22 @@ public class addFxmlController implements Initializable {
 
 
             exerciseSessionWrapper.append(tempSession);
+            try {
+                ArrayList<exerciseSession> exerciseSessionArrayListNonStatic = exerciseSessionWrapper.exerciseSessionArrayList;
 
-            ArrayList<exerciseSession> exerciseSessionArrayListNonStatic = exerciseSessionWrapper.exerciseSessionArrayList;
+                writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayListNonStatic);
 
-            writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayListNonStatic);
+                Logger.info("Successful session saving operation!");
 
-            final Node source = (Node) event.getSource();
-            final Stage stage = (Stage) source.getScene().getWindow(); //fogalmam sincs hogy miért csak így jó
+                final Node source = (Node) event.getSource();
+                final Stage stage = (Stage) source.getScene().getWindow(); //fogalmam sincs hogy miért csak így jó
 
-            stage.close();
+                stage.close();
+            }
+            catch(Exception e)
+            {
+                Logger.warn("Unsuccessful session saving operation!");
+            }
 
         }
         else
@@ -205,6 +220,8 @@ public class addFxmlController implements Initializable {
 
             exerciseSessionNameField.setPromptText("Invalid Input!");
             exerciseDurationNameField.setPromptText("Invalid Input!");
+
+            Logger.error("Invalid Input!");
         }
     }
 
@@ -212,6 +229,8 @@ public class addFxmlController implements Initializable {
     public void onClickReset(){
         exerciseSessionNameField.setPromptText("Session Name");
         exerciseDurationNameField.setPromptText("Session length in hours");
+
+        Logger.info("add TextFields reset");
     }
 
     @Override

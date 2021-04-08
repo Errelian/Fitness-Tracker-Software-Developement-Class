@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.pmw.tinylog.Logger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,8 @@ public class editFxmlController implements Initializable {
         exerciseCalorieField.setPromptText("Calories burned per hour per 70kg");
 
         exerciseNameField.setPromptText("Exercise Name");
+
+        Logger.info("edit Textfields reset!");
     }
 
     @FXML
@@ -45,22 +48,23 @@ public class editFxmlController implements Initializable {
 
         tempExercise = exerciseNameField.getText(); //bármilyen sztringet elfogad, nem látom értelméd a számok kiszűrésének
 
+        Logger.info("Name successfully read!");
+
         return true;
     }
 
     private boolean readCalorie(){
 
-        //System.out.println("Jó 1");
-
         String something;
 
         something = exerciseCalorieField.getText();
 
-        //System.out.println("Jó 2");
 
         if (something != null && !(something.equals("")) && inputChecker.onlyInteger(something) ) {
 
             tempCalorie = Integer.valueOf(something);
+
+            Logger.info("Calorie value successfully read!");
 
             return true;
         }
@@ -70,9 +74,10 @@ public class editFxmlController implements Initializable {
             exerciseCalorieField.clear();
             exerciseCalorieField.setPromptText("Invalid input!");
 
+            Logger.warn("Calorie value unsuccessfully read!");
+
             return false;
         }
-        //System.out.println("Jó 3");
 
 
     }
@@ -91,13 +96,21 @@ public class editFxmlController implements Initializable {
             ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
             objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
-            ArrayList<exercise> exerciseArrayNonStatic = exerciseWrapper.exerciseArrayList;
-            writer.writeValue(Paths.get("exerciseTypes.json").toFile(), exerciseArrayNonStatic);
+            try {
+                ArrayList<exercise> exerciseArrayNonStatic = exerciseWrapper.exerciseArrayList;
+                writer.writeValue(Paths.get("exerciseTypes.json").toFile(), exerciseArrayNonStatic);
 
-            final Node source = (Node) event.getSource();
-            final Stage stage = (Stage) source.getScene().getWindow(); //fogalmam sincs hogy miért csak így jó
+                final Node source = (Node) event.getSource();
+                final Stage stage = (Stage) source.getScene().getWindow(); //I have no idea why it only works like this
 
-            stage.close();
+                Logger.info("Successful edit save operation!");
+
+                stage.close();
+            }
+            catch(Exception e)
+            {
+                Logger.error("Error during edit save operation!");
+            }
         }
         else
         {
@@ -108,6 +121,8 @@ public class editFxmlController implements Initializable {
             exerciseCalorieField.setPromptText("Invalid input!");
 
             exerciseNameField.setPromptText("Invalid input!");
+
+            Logger.warn("Invalid edit input!");
         }
     }
 

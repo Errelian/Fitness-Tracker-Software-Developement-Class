@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import org.pmw.tinylog.Logger;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -63,7 +65,7 @@ public class MainApp extends Application {
             exerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic;
         }
         catch (Exception e) {
-            System.out.println("Session file not found or otherwise inaccessible! Attempting to create it..."); //TODO REPLACE WITH LOGGER
+            Logger.warn("Session file not found or otherwise inaccessible! Attempting to create it...");
 
             exercise Type1 = new exercise("Aerobic", 457);
             exerciseSession Sess1 = new exerciseSession(1, "My first exercise!", LocalDate.now(), Duration.ofHours(0), Type1, 0.0, 1);
@@ -78,7 +80,7 @@ public class MainApp extends Application {
             }
             catch(Exception e2)
             {
-                System.out.println("Unable to create file!"); //TODO TURN INTO LOGGER
+                Logger.error("Unable to create file!");
 
                 launchChecker = Boolean.FALSE;
             }
@@ -94,7 +96,7 @@ public class MainApp extends Application {
         }
         catch (Exception e)
         {
-            System.out.println("Type file not found or otherwise inaccessible! Attempting to create it..."); //TODO TURN INTO LOGGER
+            Logger.warn("Type file not found or otherwise inaccessible! Attempting to create it...");
 
             exerciseWrapper.initialize();
 
@@ -105,7 +107,7 @@ public class MainApp extends Application {
             }
             catch(Exception e2)
             {
-                System.out.println("Unable to create file!"); //TODO TURN INTO LOGGER
+                Logger.error("Unable to create file!");
 
                 launchChecker = Boolean.FALSE;
             }
@@ -120,7 +122,7 @@ public class MainApp extends Application {
             }
             catch(Exception e)
             {
-                System.out.println("Profile file not found or otherwise inaccessible! Attempting to create it..."); //TODO TURN INTO LOGGER
+                Logger.warn("Profile file not found or otherwise inaccessible! Attempting to create it...");
 
                 profile profile = new profile("Joe Default", 70.0);
 
@@ -131,7 +133,7 @@ public class MainApp extends Application {
                 }
                 catch(Exception e2)
                 {
-                    System.out.println("Unable to create file!"); //TODO TURN INTO LOGGER
+                    Logger.error("Unable to create file!");
 
                     launchChecker = Boolean.FALSE;
                 }
@@ -143,7 +145,7 @@ public class MainApp extends Application {
         }
         else
         {
-            System.out.println("Unable to create file(s)! Make sure the root folder isn't write protected!"); //TODO TURN INTO LOGGER
+            Logger.error("Unable to create file(s)! Make sure the root folder isn't write protected!");
         }
     }
 

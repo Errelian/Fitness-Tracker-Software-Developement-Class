@@ -28,16 +28,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.pmw.tinylog.Logger;
 
 public class FXMLController implements Initializable {
-    
-    @FXML
-    private Label lblOut;
-    
-    @FXML
-    private void btnClickAction(ActionEvent event) {
-        lblOut.setText("Hello World!");
-    }
 
     @FXML
     private void loadButtonAction(ActionEvent event) throws IOException {
@@ -47,34 +40,38 @@ public class FXMLController implements Initializable {
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
-        ArrayList<exerciseSession> exerciseSessionArrayNonStatic = objectMapper.readValue(Paths.get("exerciseTypeTest1.json").toFile(), new TypeReference<ArrayList<exerciseSession>>() {});
+        try {
+            ArrayList<exerciseSession> exerciseSessionArrayNonStatic = objectMapper.readValue(Paths.get("exerciseTypeTest1.json").toFile(), new TypeReference<ArrayList<exerciseSession>>() {
+            });
 
-        exerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic; //NAGYON CSÚNYA HACK
+            exerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic; //ugly hack
 
-        //lblOut.setText(exerciseSessionWrapper.exerciseSessionArrayList.toString());
+            Logger.info("Successful load!");
+        }
+        catch(Exception e)
+        {
+            Logger.error("Unsuccessful load!");
+        }
     }
 
     @FXML
-    private void saveButtonAction(ActionEvent event) throws IOException{
+    private void saveButtonAction(ActionEvent event) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
         objectMapper.registerModule(new JavaTimeModule());
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
-        /*exercise Type1 = new exercise("Aerobic", 457);
-        exercise Type2 = new exercise("Archery", 246);
+        ArrayList<exerciseSession> exerciseSessionArrayNonStatic = exerciseSessionWrapper.exerciseSessionArrayList;
 
-        exerciseSession Sess1 = new exerciseSession(1, "Reggeli Aerobic 1", ZonedDateTime.now(), Duration.ofHours(2), Type1, 914.0, 1);
-        exerciseSession Sess2 = new exerciseSession(2, "Délutáni Íjászat",ZonedDateTime.now().plus(Duration.ofHours(5)), Duration.ofHours(2), Type2, 592.0, 1);
-
-        exerciseSessionWrapper exerciseSessionArray = new exerciseSessionWrapper(Sess1);
-        exerciseSessionArray.append(Sess2);*/
-
-        ArrayList<exerciseSession> exerciseSessionArrayNonStatic = exerciseSessionWrapper.exerciseSessionArrayList; //FÚNE
-
-        writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayNonStatic);
-
+        try {
+            writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayNonStatic);
+            Logger.info("Successful save!");
+        }
+        catch(Exception e)
+        {
+            Logger.error("Unsuccessful save!");
+        }
     }
 
     @FXML
@@ -83,14 +80,21 @@ public class FXMLController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/add.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
 
-        stage.setResizable(false);
-        stage.setTitle("Adding a New Session!");
-        stage.setScene(scene);
-        stage.show();
+            stage.setResizable(false);
+            stage.setTitle("Adding a New Session!");
+            stage.setScene(scene);
 
+            Logger.info("Successful FXML file opening!");
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            Logger.error("Unsuccessful FXML file opening!");
+        }
     }
 
     @FXML
@@ -99,13 +103,21 @@ public class FXMLController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/edit.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
 
-        stage.setTitle("Add a New Exercise Type!");
-        stage.setScene(scene);
-        stage.show();
 
+            stage.setTitle("Add a New Exercise Type!");
+            stage.setScene(scene);
+
+            Logger.info("Successful FXML file opening!");
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            Logger.error("Unsuccessful FXML file opening!");
+        }
     }
 
     @FXML
@@ -113,12 +125,21 @@ public class FXMLController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/profile.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
 
-        stage.setTitle("Overwrite previous profile!");
-        stage.setScene(scene);
-        stage.show();
+            stage.setTitle("Overwrite previous profile!");
+            stage.setScene(scene);
+
+            Logger.info("Successful FXML file opening!");
+
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            Logger.error("Unsuccessful FXML file opening!");
+        }
     }
 
     @FXML
@@ -126,17 +147,27 @@ public class FXMLController implements Initializable {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/graph.fxml"));
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
 
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
+            stage.setTitle("Graphing Window");
+            stage.setScene(scene);
 
-        stage.setTitle("Graphing Window");
-        stage.setScene(scene);
-        stage.show();
+            Logger.info("Successful FXML file opening!");
+
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            Logger.error("Unsuccessful FXML file opening!");
+        }
     }
 
     @FXML
     private void exitButtonAction(ActionEvent event){
+        Logger.info("Exiting program...");
+
         Platform.exit();
         System.exit(0);
     }
