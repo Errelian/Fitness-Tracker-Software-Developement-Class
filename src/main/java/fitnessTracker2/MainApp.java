@@ -57,85 +57,39 @@ public class MainApp extends Application {
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
 
         Boolean launchChecker = Boolean.TRUE;
-
+        
         try {
-            ArrayList<ExerciseSession> exerciseSessionArrayNonStatic = objectMapper.readValue(Paths.get("exerciseTypeTest1.json").toFile(), new TypeReference<ArrayList<ExerciseSession>>() {});
-            ExerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic;
+            JsonHandler.load(JsonHandlerEnum.SESSION);
         }
         catch (Exception e) {
-            Logger.warn("Session file not found or otherwise inaccessible! Attempting to create it...");
+            Logger.error("Session file not found or otherwise inaccessible!");
 
-            Exercise Type1 = new Exercise("Aerobic", 457);
-            ExerciseSession Sess1 = new ExerciseSession(1, "My first exercise!", LocalDate.now(), Duration.ofHours(0), Type1, 0.0, 1);
-
-            ArrayList<ExerciseSession> tempArray = new ArrayList<ExerciseSession>(){
-                {
-                    add(Sess1);
-                }
-            };
-            try {
-                writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), tempArray);
-            }
-            catch(Exception e2)
-            {
-                Logger.error("Unable to create file!");
-
-                launchChecker = Boolean.FALSE;
-            }
+            launchChecker = Boolean.FALSE;
         }
 
 
 
         try {
-            ArrayList<Exercise> exerciseArrayListNonStatic = objectMapper.readValue(Paths.get("exerciseTypes.json").toFile(), new TypeReference<ArrayList<Exercise>>() {});
-
-            ExerciseWrapper.exerciseArrayList = exerciseArrayListNonStatic;
+            JsonHandler.load(JsonHandlerEnum.TYPE);
 
         }
         catch (Exception e)
         {
-            Logger.warn("Type file not found or otherwise inaccessible! Attempting to create it...");
+            Logger.error("Type file not found or otherwise inaccessible! Attempting to create it...");
 
-            ExerciseWrapper.initialize();
 
-            ArrayList<Exercise> tempExercise = ExerciseWrapper.exerciseArrayList;
-
-            try{
-                writer.writeValue(Paths.get("exerciseTypes.json").toFile(), tempExercise);
-            }
-            catch(Exception e2)
-            {
-                Logger.error("Unable to create file!");
-
-                launchChecker = Boolean.FALSE;
-            }
-
+            launchChecker = Boolean.FALSE;
         }
 
             try {
-                Profile profile = objectMapper.readValue(Paths.get("profile.json").toFile(), new TypeReference<Profile>() {});
-
-                ProfileWrapper.profile = profile;
+                JsonHandler.load(JsonHandlerEnum.PROFILE);
             }
             catch(Exception e)
             {
-                Logger.warn("Profile file not found or otherwise inaccessible! Attempting to create it...");
+                Logger.error("Profile file not found or otherwise inaccessible! Attempting to create it...");
 
-                Profile profile = new Profile("Joe Default", 70.0);
-
-                ProfileWrapper.profile = profile;
-
-                try {
-                    writer.writeValue(Paths.get("profile.json").toFile(), profile);
-                }
-                catch(Exception e2)
-                {
-                    Logger.error("Unable to create file!");
-
-                    launchChecker = Boolean.FALSE;
-                }
+                launchChecker = Boolean.FALSE;
             }
-        //System.out.println(profileWrapper.profile);
 
         if (launchChecker) {
             launch(args);

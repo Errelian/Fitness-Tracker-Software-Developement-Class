@@ -41,7 +41,7 @@ public class ExerciseWrapper {
         exerciseArrayList.add(new Exercise("Golf", 317));
     }
 
-    public void append(Exercise exercise){
+    public static void append(Exercise exercise){
         exerciseArrayList.add(exercise);
     }
 

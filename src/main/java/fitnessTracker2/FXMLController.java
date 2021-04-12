@@ -26,16 +26,9 @@ public class FXMLController implements Initializable {
     @FXML
     private void loadButtonAction(ActionEvent event) {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        objectMapper.registerModule(new JavaTimeModule());
-        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-
         try {
-            ArrayList<ExerciseSession> exerciseSessionArrayNonStatic = objectMapper.readValue(Paths.get("exerciseTypeTest1.json").toFile(), new TypeReference<ArrayList<ExerciseSession>>() {
-            });
 
-            ExerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic; //ugly hack
+            JsonHandler.load(JsonHandlerEnum.SESSION);
 
             Logger.info("Successful load!");
         }
