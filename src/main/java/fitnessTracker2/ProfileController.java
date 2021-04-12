@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -24,7 +25,7 @@ public class ProfileController implements Initializable {
     public TextField bodyWeightTextField;
 
     @FXML
-    public void saveButtonAction(ActionEvent event) throws IOException {
+    public void saveButtonAction(ActionEvent event) throws IOException, URISyntaxException {
         String tempName = profileNameTextField.getText();
         String tempWeightString = bodyWeightTextField.getText();
 
@@ -33,11 +34,7 @@ public class ProfileController implements Initializable {
             ProfileWrapper.profile.setWeight(Double.parseDouble(tempWeightString));
             ProfileWrapper.profile.setName(tempName);
 
-            Profile profile =  new Profile( ProfileWrapper.profile.getName(),  ProfileWrapper.profile.getWeight());
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-            writer.writeValue(Paths.get("profile.json").toFile(), profile);
+            JsonHandler.save(JsonHandlerEnum.PROFILE);
 
             final Node source = (Node) event.getSource();
             final Stage stage = (Stage) source.getScene().getWindow(); //fogalmam sincs hogy miért csak így jó

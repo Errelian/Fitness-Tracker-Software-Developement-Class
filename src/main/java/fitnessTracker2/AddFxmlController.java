@@ -180,25 +180,16 @@ public class AddFxmlController implements Initializable {
     }
 
     @FXML
-    public void saveButtonAction(ActionEvent event) throws IOException {
+    public void saveButtonAction(ActionEvent event) {
 
         if(readExerciseChoiceBox() && setCode() && readName() && readDate() && readDuration() && readIntensityChoiceBox() && setCalories())
         {
             ExerciseSession tempSession = new ExerciseSession(tempCode, tempName,tempDate,tempDuration,tempExercise, tempCalories, tempIntensity);
 
-            //System.out.println(tempSession);
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.registerModule(new JavaTimeModule());
-            ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-
-
             ExerciseSessionWrapper.append(tempSession);
             try {
-                ArrayList<ExerciseSession> exerciseSessionArrayListNonStatic = ExerciseSessionWrapper.exerciseSessionArrayList;
 
-                writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayListNonStatic);
+                JsonHandler.save(JsonHandlerEnum.SESSION);
 
                 Logger.info("Successful session saving operation!");
 

@@ -40,16 +40,9 @@ public class FXMLController implements Initializable {
 
     @FXML
     private void saveButtonAction(ActionEvent event) {
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        objectMapper.registerModule(new JavaTimeModule());
-        ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-
-        ArrayList<ExerciseSession> exerciseSessionArrayNonStatic = ExerciseSessionWrapper.exerciseSessionArrayList;
 
         try {
-            writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayNonStatic);
+            JsonHandler.save(JsonHandlerEnum.SESSION);
             Logger.info("Successful save!");
         }
         catch(Exception e)

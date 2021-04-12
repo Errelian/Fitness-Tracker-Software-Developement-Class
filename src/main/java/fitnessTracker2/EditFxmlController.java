@@ -84,7 +84,7 @@ public class EditFxmlController implements Initializable {
 
 
     @FXML
-    private void saveExerciseType(ActionEvent event) throws IOException {
+    private void saveExerciseType(ActionEvent event){
 
         if (readCalorie() && readName()) {
 
@@ -92,13 +92,9 @@ public class EditFxmlController implements Initializable {
 
             ExerciseWrapper.exerciseArrayList.add(exerciseToBeAdded);
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-
             try {
-                ArrayList<Exercise> exerciseArrayNonStatic = ExerciseWrapper.exerciseArrayList;
-                writer.writeValue(Paths.get("exerciseTypes.json").toFile(), exerciseArrayNonStatic);
+
+                JsonHandler.save(JsonHandlerEnum.TYPE);
 
                 final Node source = (Node) event.getSource();
                 final Stage stage = (Stage) source.getScene().getWindow(); //I have no idea why it only works like this
