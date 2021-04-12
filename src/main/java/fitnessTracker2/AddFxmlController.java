@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class addFxmlController implements Initializable {
+public class AddFxmlController implements Initializable {
 
     @FXML
     public ChoiceBox<String> exerciseTypeChoiceBox;
@@ -47,7 +47,7 @@ public class addFxmlController implements Initializable {
 
     private Double tempCalories;
     private Duration tempDuration;
-    private exercise tempExercise;
+    private Exercise tempExercise;
     private Integer tempCode;
     private String tempName;
     private LocalDate tempDate;
@@ -65,7 +65,7 @@ public class addFxmlController implements Initializable {
         tempString = "";
         tempString = exerciseDurationNameField.getText();
 
-        if(tempString != null && !(tempString.equals("")) && inputChecker.onlyFloat(tempString))
+        if(tempString != null && !(tempString.equals("")) && InputChecker.onlyFloat(tempString))
         {
              double tempDouble = Double.parseDouble(tempString);
              if (tempDouble < 73.0)
@@ -118,7 +118,7 @@ public class addFxmlController implements Initializable {
     }
 
     private boolean setCode() {
-        tempCode =  exerciseSessionWrapper.exerciseSessionArrayList.get(exerciseSessionWrapper.exerciseSessionArrayList.size() - 1).getCode() + 1;
+        tempCode =  ExerciseSessionWrapper.exerciseSessionArrayList.get(ExerciseSessionWrapper.exerciseSessionArrayList.size() - 1).getCode() + 1;
 
         Logger.info("Code successfully set!");
 
@@ -132,9 +132,9 @@ public class addFxmlController implements Initializable {
             tempString = exerciseTypeChoiceBox.getValue();
 
             if( !(tempString.equals("")) ) {
-                for (int i = 0; i < exerciseWrapper.exerciseArrayList.size(); i++) {
-                    if (tempString.equals(exerciseWrapper.exerciseArrayList.get(i).getName())) {
-                        tempExercise = exerciseWrapper.exerciseArrayList.get(i);
+                for (int i = 0; i < ExerciseWrapper.exerciseArrayList.size(); i++) {
+                    if (tempString.equals(ExerciseWrapper.exerciseArrayList.get(i).getName())) {
+                        tempExercise = ExerciseWrapper.exerciseArrayList.get(i);
 
                         Logger.info("Exercise type successfully read!");
 
@@ -168,7 +168,7 @@ public class addFxmlController implements Initializable {
 
         if (tempExercise !=null) {
 
-            tempCalories = (profileWrapper.profile.getWeight() / 70.0) * tempExercise.getCalorieCost() * tempIntensity;
+            tempCalories = (ProfileWrapper.profile.getWeight() / 70.0) * tempExercise.getCalorieCost() * tempIntensity;
 
             Logger.info("Calorie reading successful!");
             return true;
@@ -184,7 +184,7 @@ public class addFxmlController implements Initializable {
 
         if(readExerciseChoiceBox() && setCode() && readName() && readDate() && readDuration() && readIntensityChoiceBox() && setCalories())
         {
-            exerciseSession tempSession = new exerciseSession(tempCode, tempName,tempDate,tempDuration,tempExercise, tempCalories, tempIntensity);
+            ExerciseSession tempSession = new ExerciseSession(tempCode, tempName,tempDate,tempDuration,tempExercise, tempCalories, tempIntensity);
 
             //System.out.println(tempSession);
 
@@ -194,9 +194,9 @@ public class addFxmlController implements Initializable {
             objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
 
-            exerciseSessionWrapper.append(tempSession);
+            ExerciseSessionWrapper.append(tempSession);
             try {
-                ArrayList<exerciseSession> exerciseSessionArrayListNonStatic = exerciseSessionWrapper.exerciseSessionArrayList;
+                ArrayList<ExerciseSession> exerciseSessionArrayListNonStatic = ExerciseSessionWrapper.exerciseSessionArrayList;
 
                 writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayListNonStatic);
 
@@ -236,9 +236,9 @@ public class addFxmlController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    for (int i = 0; i < exerciseWrapper.exerciseArrayList.size(); i++)
+    for (int i = 0; i < ExerciseWrapper.exerciseArrayList.size(); i++)
     {
-        exerciseTypeChoiceBox.getItems().add(exerciseWrapper.exerciseArrayList.get(i).getName()); //a choice box választásainak beállítása
+        exerciseTypeChoiceBox.getItems().add(ExerciseWrapper.exerciseArrayList.get(i).getName()); //a choice box választásainak beállítása
     }
 
     intensityChoiceBox.getItems().add("Low Intesity");

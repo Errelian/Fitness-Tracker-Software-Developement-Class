@@ -32,10 +32,10 @@ public class FXMLController implements Initializable {
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
         try {
-            ArrayList<exerciseSession> exerciseSessionArrayNonStatic = objectMapper.readValue(Paths.get("exerciseTypeTest1.json").toFile(), new TypeReference<ArrayList<exerciseSession>>() {
+            ArrayList<ExerciseSession> exerciseSessionArrayNonStatic = objectMapper.readValue(Paths.get("exerciseTypeTest1.json").toFile(), new TypeReference<ArrayList<ExerciseSession>>() {
             });
 
-            exerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic; //ugly hack
+            ExerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic; //ugly hack
 
             Logger.info("Successful load!");
         }
@@ -53,7 +53,7 @@ public class FXMLController implements Initializable {
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
-        ArrayList<exerciseSession> exerciseSessionArrayNonStatic = exerciseSessionWrapper.exerciseSessionArrayList;
+        ArrayList<ExerciseSession> exerciseSessionArrayNonStatic = ExerciseSessionWrapper.exerciseSessionArrayList;
 
         try {
             writer.writeValue(Paths.get("exerciseTypeTest1.json").toFile(), exerciseSessionArrayNonStatic);

@@ -6,10 +6,9 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class graphFxmlController implements Initializable {
+public class GraphFxmlController implements Initializable {
 
     @FXML
     public LineChart<String, Number> calorieBurnedLineChart;
@@ -22,11 +21,11 @@ public class graphFxmlController implements Initializable {
 
         series1.setName("Series 1");
 
-        for (int i = 0; i < exerciseSessionWrapper.exerciseSessionArrayList.size(); i++)
+        for (int i = 0; i < ExerciseSessionWrapper.exerciseSessionArrayList.size(); i++)
         {
             series1.getData().add(new XYChart.Data<>(
-                    exerciseSessionWrapper.exerciseSessionArrayList.get(i).getCode().toString(),
-                    exerciseSessionWrapper.exerciseSessionArrayList.get(i).getBurnedCalories()
+                    ExerciseSessionWrapper.exerciseSessionArrayList.get(i).getCode().toString(),
+                    ExerciseSessionWrapper.exerciseSessionArrayList.get(i).getBurnedCalories()
             ));
         }
 

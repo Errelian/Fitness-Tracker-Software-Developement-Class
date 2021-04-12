@@ -3,7 +3,7 @@ package fitnessTracker2;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class inputChecker {
+public class InputChecker {
 
     public static Pattern onlyIntegerPattern = Pattern.compile("[0-9]+"); //I wish there was a constexpr in Java too
 

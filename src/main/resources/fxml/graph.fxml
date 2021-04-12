@@ -3,7 +3,7 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="515.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitnessTracker2.graphFxmlController">
+<AnchorPane prefHeight="515.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitnessTracker2.GraphFxmlController">
    <children>
       <LineChart fx:id="calorieBurnedLineChart" layoutY="33.0" maxHeight="1080.0" maxWidth="1920.0" minHeight="450" minWidth="888" prefHeight="450.0" prefWidth="888.0" title="Calories Burned per Session">
           <yAxis>

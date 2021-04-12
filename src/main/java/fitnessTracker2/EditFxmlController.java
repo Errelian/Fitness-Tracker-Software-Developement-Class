@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class editFxmlController implements Initializable {
+public class EditFxmlController implements Initializable {
 
     public String tempExercise = "";
 
@@ -60,7 +60,7 @@ public class editFxmlController implements Initializable {
         something = exerciseCalorieField.getText();
 
 
-        if (something != null && !(something.equals("")) && inputChecker.onlyInteger(something) ) {
+        if (something != null && !(something.equals("")) && InputChecker.onlyInteger(something) ) {
 
             tempCalorie = Integer.valueOf(something);
 
@@ -88,16 +88,16 @@ public class editFxmlController implements Initializable {
 
         if (readCalorie() && readName()) {
 
-            exercise exerciseToBeAdded = new exercise(tempExercise, tempCalorie);
+            Exercise exerciseToBeAdded = new Exercise(tempExercise, tempCalorie);
 
-            exerciseWrapper.exerciseArrayList.add(exerciseToBeAdded);
+            ExerciseWrapper.exerciseArrayList.add(exerciseToBeAdded);
 
             ObjectMapper objectMapper = new ObjectMapper();
             ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
             objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
             try {
-                ArrayList<exercise> exerciseArrayNonStatic = exerciseWrapper.exerciseArrayList;
+                ArrayList<Exercise> exerciseArrayNonStatic = ExerciseWrapper.exerciseArrayList;
                 writer.writeValue(Paths.get("exerciseTypes.json").toFile(), exerciseArrayNonStatic);
 
                 final Node source = (Node) event.getSource();

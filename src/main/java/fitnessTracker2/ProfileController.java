@@ -16,7 +16,7 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
-public class profileController implements Initializable {
+public class ProfileController implements Initializable {
 
     @FXML
     public TextField profileNameTextField;
@@ -28,12 +28,12 @@ public class profileController implements Initializable {
         String tempName = profileNameTextField.getText();
         String tempWeightString = bodyWeightTextField.getText();
 
-        if (inputChecker.onlyFloat(tempWeightString))
+        if (InputChecker.onlyFloat(tempWeightString))
         {
-            profileWrapper.profile.setWeight(Double.parseDouble(tempWeightString));
-            profileWrapper.profile.setName(tempName);
+            ProfileWrapper.profile.setWeight(Double.parseDouble(tempWeightString));
+            ProfileWrapper.profile.setName(tempName);
 
-            profile profile =  new profile( profileWrapper.profile.getName(),  profileWrapper.profile.getWeight());
+            Profile profile =  new Profile( ProfileWrapper.profile.getName(),  ProfileWrapper.profile.getWeight());
 
             ObjectMapper objectMapper = new ObjectMapper();
             ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
