@@ -93,20 +93,7 @@ public class MainApp extends Application {
             }
 
         if (launchChecker) {
-
-            File myFile1 = new File("session.json"); //a szükséges fájlokat létrehozza arra az esete ha a felhasználó nem akar custom helyre mentene
-            File myFile2 = new File("type.json"); //a későbbiekben ezekre csak filechooser útján lesz utalva, ezik létrehozására mindig a rootban kerül sor
-            File myFile3 = new File("profiles.json");
-
-            try{
-                myFile1.createNewFile();
-                myFile2.createNewFile();
-                myFile3.createNewFile();
-            }
-            catch(Exception e)
-            {
-                Logger.error("Trouble Creating files!");
-            }
+            
             launch(args);
         }
         else

@@ -144,7 +144,7 @@ public class JsonHandler {
 
             ArrayList<ExerciseSession> exerciseSessionArrayListNonStatic = ExerciseSessionWrapper.exerciseSessionArrayList;
 
-            File filePath = fileChooser.showOpenDialog(new Stage());
+            File filePath = fileChooser.showSaveDialog(new Stage());
 
             writer.writeValue(filePath, exerciseSessionArrayListNonStatic);
 
@@ -156,7 +156,7 @@ public class JsonHandler {
 
             ArrayList<Exercise> exerciseArrayListNonStatic = ExerciseWrapper.exerciseArrayList;
 
-            File filePath = fileChooser.showOpenDialog(new Stage());
+            File filePath = fileChooser.showSaveDialog(new Stage());
 
             writer.writeValue(filePath, exerciseArrayListNonStatic);
 
@@ -168,7 +168,7 @@ public class JsonHandler {
 
             Profile profile = ProfileWrapper.profile;
 
-            File filePath = fileChooser.showOpenDialog(new Stage());
+            File filePath = fileChooser.showSaveDialog(new Stage());
 
             writer.writeValue(filePath, profile);
 
