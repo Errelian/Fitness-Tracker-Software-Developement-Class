@@ -1,0 +1,31 @@
+[ {
+  "name" : "Aerobic",
+  "calorieCost" : 457
+}, {
+  "name" : "Archery",
+  "calorieCost" : 246
+}, {
+  "name" : "Hiking",
+  "calorieCost" : 493
+}, {
+  "name" : "Badminton",
+  "calorieCost" : 317
+}, {
+  "name" : "Ballet",
+  "calorieCost" : 317
+}, {
+  "name" : "Boxing",
+  "calorieCost" : 844
+}, {
+  "name" : "Basketball",
+  "calorieCost" : 422
+}, {
+  "name" : "Fishing",
+  "calorieCost" : 211
+}, {
+  "name" : "Football",
+  "calorieCost" : 633
+}, {
+  "name" : "Golf",
+  "calorieCost" : 317
+} ]
