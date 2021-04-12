@@ -1,4 +1,6 @@
 {
-  "name" : "Joe Default",
-  "weight" : 70.0
+  "name" : "Joe",
+  "weight" : 100.0,
+  "height" : 200.0,
+  "bmi" : 25.0
 }

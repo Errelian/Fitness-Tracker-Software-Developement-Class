@@ -82,7 +82,6 @@ public class EditFxmlController implements Initializable {
 
     }
 
-
     @FXML
     private void saveExerciseType(ActionEvent event){
 

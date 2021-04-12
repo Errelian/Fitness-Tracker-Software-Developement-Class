@@ -23,16 +23,28 @@ public class ProfileController implements Initializable {
     public TextField profileNameTextField;
     @FXML
     public TextField bodyWeightTextField;
+    @FXML
+    public TextField bodyHeightTextField;
+
+    public static Double calcBmi(Double height, Double weight)
+    {
+        height = height /100.0;
+
+        return Math.round(weight / (height * height) * 10.0) /10.0; //nagyon csúnya 1 tizedesjegyre kerekítés
+    }
 
     @FXML
     public void saveButtonAction(ActionEvent event) throws IOException, URISyntaxException {
         String tempName = profileNameTextField.getText();
         String tempWeightString = bodyWeightTextField.getText();
+        String tempHeightString = bodyHeightTextField.getText();
 
-        if (InputChecker.onlyFloat(tempWeightString))
+        if (InputChecker.onlyFloat(tempWeightString) && InputChecker.onlyFloat(tempHeightString))
         {
             ProfileWrapper.profile.setWeight(Double.parseDouble(tempWeightString));
             ProfileWrapper.profile.setName(tempName);
+            ProfileWrapper.profile.setHeight(Double.parseDouble(tempHeightString));
+            ProfileWrapper.profile.setBmi(calcBmi(Double.parseDouble(tempHeightString), Double.parseDouble(tempWeightString)));
 
             JsonHandler.save(JsonHandlerEnum.PROFILE);
 
@@ -44,7 +56,9 @@ public class ProfileController implements Initializable {
         else
         {
             bodyWeightTextField.clear();
+            bodyHeightTextField.clear();
             bodyWeightTextField.setPromptText("Invalid number!");
+            bodyHeightTextField.setPromptText("Invalid number!");
         }
     }
 

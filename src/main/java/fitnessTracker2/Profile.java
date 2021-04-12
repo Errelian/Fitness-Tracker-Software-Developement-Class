@@ -7,4 +7,7 @@ public class Profile {
     private String name;
     private Double weight;
 
+    private Double height;
+    private Double bmi;
+
 }

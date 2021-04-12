@@ -1,11 +1,5 @@
 package fitnessTracker2;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,12 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.pmw.tinylog.Logger;
 
-import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -61,13 +52,11 @@ public class AddFxmlController implements Initializable {
     }
 
 
-    private boolean readDuration(){
-        tempString = "";
-        tempString = exerciseDurationNameField.getText();
+    private boolean validDuration(String Durations){
 
-        if(tempString != null && !(tempString.equals("")) && InputChecker.onlyFloat(tempString))
+        if(Durations != null && !(Durations.equals("")) && InputChecker.onlyFloat(Durations))
         {
-             double tempDouble = Double.parseDouble(tempString);
+             double tempDouble = Double.parseDouble(Durations);
              if (tempDouble < 73.0)
              {
                  Long tempLong = Math.round(3600 * tempDouble);
@@ -93,11 +82,9 @@ public class AddFxmlController implements Initializable {
         }
     }
 
-    private boolean readDate(){
+    private boolean validDate(LocalDate localDate){
 
-        tempDate = datePicker.getValue();
-
-        if (tempDate != null)
+        if (localDate != null)
         {
             Logger.info("Date successfully read!");
             return true;
@@ -109,7 +96,7 @@ public class AddFxmlController implements Initializable {
         }
     }
 
-    private boolean readName(){
+    private boolean validName(){
         tempName = exerciseSessionNameField.getText(); //bármilyen sztringet elfogad, nem látom értelméd a számok kiszűrésének
 
         Logger.info("Name, successfully read!");
@@ -164,11 +151,15 @@ public class AddFxmlController implements Initializable {
             return false;
     }
 
+    public static double calcCalorie(double weight, double cost, double intensity){
+        return Math.round((weight / 70.0) * cost * intensity *10.0) / 10.0;
+    }
+
     private boolean setCalories(){
 
         if (tempExercise !=null) {
 
-            tempCalories = (ProfileWrapper.profile.getWeight() / 70.0) * tempExercise.getCalorieCost() * tempIntensity;
+            tempCalories = calcCalorie(ProfileWrapper.profile.getWeight(), tempExercise.getCalorieCost(), tempIntensity); //kalória becslés
 
             Logger.info("Calorie reading successful!");
             return true;
@@ -182,7 +173,8 @@ public class AddFxmlController implements Initializable {
     @FXML
     public void saveButtonAction(ActionEvent event) {
 
-        if(readExerciseChoiceBox() && setCode() && readName() && readDate() && readDuration() && readIntensityChoiceBox() && setCalories())
+        if(readExerciseChoiceBox() && setCode() && validName() && validDate(datePicker.getValue()) && validDuration(exerciseDurationNameField.getText())
+                && readIntensityChoiceBox() && setCalories())
         {
             ExerciseSession tempSession = new ExerciseSession(tempCode, tempName,tempDate,tempDuration,tempExercise, tempCalories, tempIntensity);
 

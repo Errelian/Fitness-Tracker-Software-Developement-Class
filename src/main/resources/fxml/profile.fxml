@@ -5,8 +5,9 @@
 
 <AnchorPane prefHeight="236.0" prefWidth="269.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitnessTracker2.ProfileController">
    <children>
-      <Button layoutX="95.0" layoutY="188.0" mnemonicParsing="false" text="Save" onAction="#saveButtonAction" />
-      <TextField fx:id="profileNameTextField" layoutX="46.0" layoutY="52.0" onMouseClicked="#onClickReset" promptText="Enter new Profile Name!" />
-      <TextField fx:id="bodyWeightTextField" layoutX="46.0" layoutY="126.0" onMouseClicked="#onClickReset" promptText="Enter your body weight!" />
+      <Button layoutX="95.0" layoutY="188.0" mnemonicParsing="false" onAction="#saveButtonAction" text="Save" />
+      <TextField fx:id="profileNameTextField" layoutX="41.0" layoutY="31.0" onMouseClicked="#onClickReset" promptText="Enter new Profile Name!" />
+      <TextField fx:id="bodyWeightTextField" layoutX="41.0" layoutY="125.0" onMouseClicked="#onClickReset" promptText="Enter your body weight!" />
+      <TextField fx:id="bodyHeightTextField" layoutX="41.0" layoutY="76.0" promptText="Enter your height!" />
    </children>
 </AnchorPane>
