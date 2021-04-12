@@ -26,7 +26,7 @@ public class FXMLController implements Initializable {
     @FXML
     private void loadButtonAction(ActionEvent event) {
 
-        try {
+        /*try {
 
             JsonHandler.load(JsonHandlerEnum.SESSION);
 
@@ -35,19 +35,48 @@ public class FXMLController implements Initializable {
         catch(Exception e)
         {
             Logger.error("Unsuccessful load!");
+        }*/
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/fxml/Load.fxml"));
+
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+
+            stage.setResizable(false);
+            stage.setTitle("Load!");
+            stage.setScene(scene);
+
+            Logger.info("Successful FXML file opening!");
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            Logger.error("Unsuccessful FXML file opening!");
         }
     }
 
     @FXML
     private void saveButtonAction(ActionEvent event) {
 
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/fxml/save.fxml"));
+
         try {
-            JsonHandler.save(JsonHandlerEnum.SESSION);
-            Logger.info("Successful save!");
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+
+            stage.setResizable(false);
+            stage.setTitle("Save!");
+            stage.setScene(scene);
+
+            Logger.info("Successful FXML file opening!");
+            stage.show();
         }
         catch(Exception e)
         {
-            Logger.error("Unsuccessful save!");
+            Logger.error("Unsuccessful FXML file opening!");
         }
     }
 
@@ -151,6 +180,5 @@ public class FXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 }

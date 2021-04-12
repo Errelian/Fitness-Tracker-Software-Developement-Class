@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import org.pmw.tinylog.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.Duration;
@@ -59,7 +60,7 @@ public class MainApp extends Application {
         Boolean launchChecker = Boolean.TRUE;
         
         try {
-            JsonHandler.load(JsonHandlerEnum.SESSION);
+            JsonHandler.load(JsonHandlerEnum.SESSION, true);
         }
         catch (Exception e) {
             Logger.error("Session file not found or otherwise inaccessible!");
@@ -70,7 +71,7 @@ public class MainApp extends Application {
 
 
         try {
-            JsonHandler.load(JsonHandlerEnum.TYPE);
+            JsonHandler.load(JsonHandlerEnum.TYPE, true);
 
         }
         catch (Exception e)
@@ -82,7 +83,7 @@ public class MainApp extends Application {
         }
 
             try {
-                JsonHandler.load(JsonHandlerEnum.PROFILE);
+                JsonHandler.load(JsonHandlerEnum.PROFILE, true);
             }
             catch(Exception e)
             {
@@ -92,6 +93,20 @@ public class MainApp extends Application {
             }
 
         if (launchChecker) {
+
+            File myFile1 = new File("session.json"); //a szükséges fájlokat létrehozza arra az esete ha a felhasználó nem akar custom helyre mentene
+            File myFile2 = new File("type.json"); //a későbbiekben ezekre csak filechooser útján lesz utalva, ezik létrehozására mindig a rootban kerül sor
+            File myFile3 = new File("profiles.json");
+
+            try{
+                myFile1.createNewFile();
+                myFile2.createNewFile();
+                myFile3.createNewFile();
+            }
+            catch(Exception e)
+            {
+                Logger.error("Trouble Creating files!");
+            }
             launch(args);
         }
         else

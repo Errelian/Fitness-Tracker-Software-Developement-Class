@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitnessTracker2.SaveFxmlController">
+    <children>
+        <ChoiceBox fx:id="fileTypeChoiceBox" layoutX="38.0" layoutY="135.0" prefWidth="150.0" />
+        <Button layoutX="92.0" layoutY="234.0" mnemonicParsing="false" onAction="#saveButtonAction" text="Save" />
+    </children>
+</AnchorPane>

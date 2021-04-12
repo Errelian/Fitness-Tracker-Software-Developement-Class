@@ -7,6 +7,9 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import javafx.scene.Node;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.pmw.tinylog.Logger;
 
 import java.io.File;
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 public class JsonHandler {
 
 
-    public static boolean load(JsonHandlerEnum fileType) throws IOException{
+    public static boolean load(JsonHandlerEnum fileType, Boolean loadDefault) throws IOException{
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -28,62 +31,112 @@ public class JsonHandler {
 
         ClassLoader classLoader = JsonHandler.class.getClassLoader();
 
-        if(fileType == JsonHandlerEnum.SESSION)
-        {
-            ArrayList<ExerciseSession> exerciseSessionArrayNonStatic = objectMapper.readValue(classLoader.getResource("exerciseTypeTest1.json"), new TypeReference<ArrayList<ExerciseSession>>() {});
+        if(loadDefault.equals(true)) {
+            if (fileType == JsonHandlerEnum.SESSION) {
+                ArrayList<ExerciseSession> exerciseSessionArrayNonStatic = objectMapper.readValue(classLoader.getResource("exerciseTypeTest1.json"), new TypeReference<ArrayList<ExerciseSession>>() {
+                });
 
 
-            if(exerciseSessionArrayNonStatic == null)
-            {
-                return false;
-            }
-            else
-            {
-                ExerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic;
+                if (exerciseSessionArrayNonStatic == null) {
+                    return false;
+                } else {
+                    ExerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic;
 
-                return true;
-            }
-        }
-        else if (fileType == JsonHandlerEnum.TYPE)
-        {
-            ArrayList<Exercise> exerciseArrayNonStatic = objectMapper.readValue(classLoader.getResource("exerciseTypes.json"), new TypeReference<ArrayList<Exercise>>() {});
+                    return true;
+                }
+            } else if (fileType == JsonHandlerEnum.TYPE) {
+                ArrayList<Exercise> exerciseArrayNonStatic = objectMapper.readValue(classLoader.getResource("exerciseTypes.json"), new TypeReference<ArrayList<Exercise>>() {
+                });
 
-            if(exerciseArrayNonStatic == null)
-            {
-                return false;
-            }
-            else
-            {
-                ExerciseWrapper.exerciseArrayList = exerciseArrayNonStatic;
+                if (exerciseArrayNonStatic == null) {
+                    return false;
+                } else {
+                    ExerciseWrapper.exerciseArrayList = exerciseArrayNonStatic;
 
-                return true;
-            }
-        }
-        else
-        {
-            Profile profile = objectMapper.readValue(classLoader.getResource("profile.json"), new TypeReference<Profile>() {});
+                    return true;
+                }
+            } else {
+                Profile profile = objectMapper.readValue(classLoader.getResource("profile.json"), new TypeReference<Profile>() {
+                });
 
-            if(profile == null)
-            {
-                return false;
-            }
-            else
-            {
-                ProfileWrapper.profile = profile;
+                if (profile == null) {
+                    return false;
+                } else {
+                    ProfileWrapper.profile = profile;
 
-                return true;
+                    return true;
+                }
             }
         }
+        {
+            FileChooser fileChooser = new FileChooser();
+            if(fileType == JsonHandlerEnum.SESSION)
+            {
+                File file = fileChooser.showOpenDialog(new Stage());
+
+                ArrayList<ExerciseSession> exerciseSessionArrayNonStatic = objectMapper.readValue(file, new TypeReference<ArrayList<ExerciseSession>>() {
+                });
+
+                if (exerciseSessionArrayNonStatic == null) {
+                    return false;
+                } else {
+                    ExerciseSessionWrapper.exerciseSessionArrayList = exerciseSessionArrayNonStatic;
+
+                    //System.out.println(ExerciseSessionWrapper.exerciseSessionArrayList);
+
+                    return true;
+                }
+
+            }
+            else if(fileType == JsonHandlerEnum.TYPE)
+            {
+                File file = fileChooser.showOpenDialog(new Stage());
+
+                ArrayList<Exercise> exerciseArrayNonStatic = objectMapper.readValue(file, new TypeReference<ArrayList<Exercise>>() {
+                });
+
+                if (exerciseArrayNonStatic == null) {
+                    return false;
+                } else {
+                    ExerciseWrapper.exerciseArrayList = exerciseArrayNonStatic;
+
+                    //System.out.println(ExerciseWrapper.exerciseArrayList);
+
+                    return true;
+                }
+
+
+            }
+            else if(fileType == JsonHandlerEnum.PROFILE)
+            {
+                File file = fileChooser.showOpenDialog(new Stage());
+
+                Profile profile = objectMapper.readValue(file, new TypeReference<Profile>() {
+                });
+
+                if (profile == null) {
+                    return false;
+                } else {
+                    ProfileWrapper.profile = profile;
+
+                    //System.out.println(ProfileWrapper.profile);
+
+                    return true;
+                }
+
+            }
+        }
+        return false;
     }
 
-    public static boolean save(JsonHandlerEnum fileType) throws IOException, URISyntaxException {
+    public static boolean save(JsonHandlerEnum fileType) throws IOException{
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
-        ClassLoader classLoader = JsonHandler.class.getClassLoader();
+        FileChooser fileChooser = new FileChooser();
 
 
         if(fileType == JsonHandlerEnum.SESSION)
@@ -91,7 +144,7 @@ public class JsonHandler {
 
             ArrayList<ExerciseSession> exerciseSessionArrayListNonStatic = ExerciseSessionWrapper.exerciseSessionArrayList;
 
-            File filePath = Paths.get(classLoader.getResource("exerciseTypeTest1.json").toURI()).toFile();
+            File filePath = fileChooser.showOpenDialog(new Stage());
 
             writer.writeValue(filePath, exerciseSessionArrayListNonStatic);
 
@@ -103,7 +156,7 @@ public class JsonHandler {
 
             ArrayList<Exercise> exerciseArrayListNonStatic = ExerciseWrapper.exerciseArrayList;
 
-            File filePath = Paths.get(classLoader.getResource("exerciseTypes.json").toURI()).toFile();
+            File filePath = fileChooser.showOpenDialog(new Stage());
 
             writer.writeValue(filePath, exerciseArrayListNonStatic);
 
@@ -115,7 +168,7 @@ public class JsonHandler {
 
             Profile profile = ProfileWrapper.profile;
 
-            File filePath = Paths.get(classLoader.getResource("profile.json").toURI()).toFile();
+            File filePath = fileChooser.showOpenDialog(new Stage());
 
             writer.writeValue(filePath, profile);
 
