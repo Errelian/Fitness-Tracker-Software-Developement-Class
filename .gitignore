@@ -11,3 +11,7 @@ sessionSaveTest.json
 test.json
 
 .gradle/
+
+out/
+
+src/main/java/META-INF/

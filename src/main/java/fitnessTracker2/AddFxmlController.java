@@ -134,7 +134,10 @@ public class AddFxmlController implements Initializable {
     }
 
     private boolean setCode() {
-        tempCode =  ExerciseSessionWrapper.exerciseSessionArrayList.get(ExerciseSessionWrapper.exerciseSessionArrayList.size() - 1).getCode() + 1;
+        Integer number = ExerciseSessionWrapper.exerciseSessionArrayList.size();
+
+
+        tempCode =  number;
 
         Logger.info("Code successfully set!");
 
@@ -149,7 +152,10 @@ public class AddFxmlController implements Initializable {
 
             if( !(tempString.equals("")) ) {
                 for (int i = 0; i < ExerciseWrapper.exerciseArrayList.size(); i++) {
-                    if (tempString.equals(ExerciseWrapper.exerciseArrayList.get(i).getName())) {
+
+                    String temp = fitnessTracker2.ExerciseWrapper.exerciseArrayList.get(i).getName();
+
+                    if (tempString.equals(temp)) {
                         tempExercise = ExerciseWrapper.exerciseArrayList.get(i);
 
                         Logger.info("Exercise type successfully read!");
@@ -215,7 +221,7 @@ public class AddFxmlController implements Initializable {
         if(readExerciseChoiceBox() && setCode() && validName() && validDate(datePicker.getValue()) && validDuration(exerciseDurationNameField.getText())
                 && readIntensityChoiceBox() && setCalories())
         {
-            ExerciseSession tempSession = new ExerciseSession(tempCode, tempName,tempDate,tempDuration,tempExercise, tempCalories, tempIntensity);
+            ExerciseSession tempSession = new fitnessTracker2.ExerciseSession(tempCode, tempName,tempDate,tempDuration,tempExercise, tempCalories, tempIntensity);
 
             ExerciseSessionWrapper.append(tempSession);
             try {

@@ -22,7 +22,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>16</maven.compiler.release>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+        <exec.mainClass>fitnessTracker2.MainApp</exec.mainClass>
         <exec.mainClass>fitnessTracker2.MainApp</exec.mainClass>
     </properties>
 
@@ -106,14 +108,13 @@
                     </execution>
                 </executions>
             </plugin>
-
             <!-- sets up the version of Java you are running -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>15</release>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -131,7 +132,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>fitnessTracker2.MainApp</mainClass>
+                            <mainClass>fitnessTracker2.MegaMain</mainClass>
                         </manifest>
                     </archive>
                     <outputDirectory>${project.build.directory}/modules</outputDirectory>
@@ -139,7 +140,7 @@
             </plugin>
 
             <!-- Makes the jLink setup so you can give it to your friends  -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
                 <version>1.0.0.Beta2</version>
@@ -167,7 +168,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
             <!-- Copies the depend FX files to your program  -->
             <plugin>
@@ -247,7 +248,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>fitnessTracker2.MainApp</mainClass>
+                            <mainClass>fitnessTracker2.MegaMain</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -263,9 +264,10 @@
             </plugin>
 
         </plugins>
+
     </build>
 
-    <reporting>
+    <!--<reporting>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -295,6 +297,7 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
             </plugin>
         </plugins>
-    </reporting>
+    </reporting>-->
+
 
 </project>
