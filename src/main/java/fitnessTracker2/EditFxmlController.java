@@ -20,12 +20,24 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for edit.fxml.
+ */
 public class EditFxmlController implements Initializable {
 
+    /**
+     * Temporary variable.
+     */
     public String tempExercise = "";
 
+    /**
+     * Temporary variable.
+     */
     public Integer tempCalorie = -1;
 
+    /**
+     * Simple clearing action for clarity.
+     */
     @FXML
     public void onClickTextField(){
 
@@ -36,12 +48,20 @@ public class EditFxmlController implements Initializable {
         Logger.info("edit Textfields reset!");
     }
 
+    /**
+     * TextField for reading the exercise type name.
+     */
     @FXML
     public TextField exerciseNameField;
-
+    /**
+     * TextField for reading the exercise type KCaloric cost.
+     */
     @FXML
     public TextField exerciseCalorieField;
 
+    /**
+     * The Save button.
+     */
     @FXML
     public javafx.scene.control.Button saveButton;
 

@@ -18,18 +18,35 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for add.fxml.
+ */
 public class AddFxmlController implements Initializable {
 
+    /**
+     *ChoiceBox to select the exercise type.
+     */
     @FXML
     public ChoiceBox<String> exerciseTypeChoiceBox;
+    /**
+     *ChoiceBox to select the exercise intensity.
+     */
     @FXML
     public ChoiceBox<String> intensityChoiceBox;
-
+    /**
+     * TexField to get the session name.
+     */
     @FXML
     public TextField exerciseSessionNameField;
+    /**
+     * TexField to get the session duration.
+     */
     @FXML
     public TextField exerciseDurationNameField;
 
+    /**
+     *JavaFX DataPicker to easily select a date.
+     */
     @FXML
     public DatePicker datePicker;
 
@@ -53,6 +70,11 @@ public class AddFxmlController implements Initializable {
     }
 
 
+    /**
+     *
+     * @param Durations jsr310 duration read from the TextField
+     * @return whatever the duration was a valid one or not
+     */
     public boolean validDuration(String Durations){
 
         if(Durations != null && !(Durations.equals("")) && InputChecker.onlyFloat(Durations))
@@ -83,6 +105,10 @@ public class AddFxmlController implements Initializable {
         }
     }
 
+    /**
+     * @param localDate jsr310 LocalDate read from DatePicker
+     * @return whatever the date reading was valid or not
+     */
     public boolean validDate(LocalDate localDate){
 
         if (localDate != null)
@@ -154,6 +180,12 @@ public class AddFxmlController implements Initializable {
             return false;
     }
 
+    /**
+     * @param weight The weight of the person in Kilograms
+     * @param cost The KCaloric base cost of the exercise for a 70kg person.
+     * @param intensity The Intensity read from the UI, can be either 0.75, 1.00 or 1.25
+     * @return The calculated KCaloric cost.
+     */
     public static double calcCalorie(double weight, double cost, double intensity){
         return Math.round((weight / 70.0) * cost * intensity *10.0) / 10.0;
     }
@@ -173,6 +205,10 @@ public class AddFxmlController implements Initializable {
         }
     }
 
+    /**
+     * The action that executes when the button is clicked.
+     * @param event The event that happens when the button is used.
+     */
     @FXML
     public void saveButtonAction(ActionEvent event) {
 
@@ -213,6 +249,9 @@ public class AddFxmlController implements Initializable {
         }
     }
 
+    /**
+     * Simple clearing of the TextFields for clarity.
+     */
     @FXML
     public void onClickReset(){
         exerciseSessionNameField.setPromptText("Session Name");

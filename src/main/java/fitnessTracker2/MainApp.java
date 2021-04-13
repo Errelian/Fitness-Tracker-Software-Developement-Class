@@ -2,10 +2,7 @@ package fitnessTracker2;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,14 +12,13 @@ import javafx.stage.Stage;
 
 import org.pmw.tinylog.Logger;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 
+/**
+ * The main class and entry point of the program.
+ */
 public class MainApp extends Application {
     private static Stage stage;
 
@@ -48,14 +44,17 @@ public class MainApp extends Application {
         return fxmlLoader.load();
     }
 
-        public static void main (String[]args) {
+    /**
+     *
+     * @param args Launch arguments, unused
+     */
+        public static void main (String[] args) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
-        ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
 
         Boolean launchChecker = Boolean.TRUE;
         

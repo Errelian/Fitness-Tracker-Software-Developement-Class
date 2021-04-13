@@ -18,15 +18,32 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
+/**
+ * FXML controller class for profile.fxml.
+ */
 public class ProfileController implements Initializable {
 
+    /**
+     * TextField for reading the profile name.
+     */
     @FXML
     public TextField profileNameTextField;
+    /**
+     * TextField for reading the user's weight.
+     */
     @FXML
     public TextField bodyWeightTextField;
+    /**
+     * TextField for reading the user's height.
+     */
     @FXML
     public TextField bodyHeightTextField;
 
+    /**
+     * @param height The user's height.
+     * @param weight The user's weight.
+     * @return The calculated BMI.
+     */
     public static Double calcBmi(Double height, Double weight)
     {
         height = height /100.0;
@@ -34,8 +51,12 @@ public class ProfileController implements Initializable {
         return Math.round(weight / (height * height) * 10.0) /10.0; //nagyon csúnya 1 tizedesjegyre kerekítés
     }
 
+    /**
+     * @param event Event Handler for closing down the window.
+     * @throws IOException on IOException.
+     */
     @FXML
-    public void saveButtonAction(ActionEvent event) throws IOException, URISyntaxException {
+    public void saveButtonAction(ActionEvent event) throws IOException{
         String tempName = profileNameTextField.getText();
         String tempWeightString = bodyWeightTextField.getText();
         String tempHeightString = bodyHeightTextField.getText();
@@ -65,8 +86,11 @@ public class ProfileController implements Initializable {
         }
     }
 
+    /**
+     * Simple method to reset prompt text when clicked.
+     */
     @FXML
-    public void onClickReset(MouseEvent event){
+    public void onClickReset(){
         bodyWeightTextField.setPromptText("Enter your body weight!");
     }
 

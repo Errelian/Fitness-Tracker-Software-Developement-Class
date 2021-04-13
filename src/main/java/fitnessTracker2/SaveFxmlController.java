@@ -13,11 +13,22 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for save.fxml.
+ */
 public class SaveFxmlController implements Initializable {
 
+    /**
+     * ChoiceBox for choosing file type.
+     */
     @FXML
     public ChoiceBox<JsonHandlerEnum> fileTypeChoiceBox;
 
+    /**
+     * The Action that fires when the button is clicked.
+     * @param event Event Handler for closing the current window.
+     * @throws IOException on IOException.
+     */
     @FXML
     public void saveButtonAction(ActionEvent event) throws IOException {
 

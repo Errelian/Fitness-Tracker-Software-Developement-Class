@@ -8,8 +8,14 @@ import javafx.scene.chart.XYChart;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Simple Controller class for graph.fxml.
+ */
 public class GraphFxmlController implements Initializable {
 
+    /**
+     * The chart itself.
+     */
     @FXML
     public LineChart<String, Number> calorieBurnedLineChart;
 

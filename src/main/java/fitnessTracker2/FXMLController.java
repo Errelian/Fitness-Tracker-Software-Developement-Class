@@ -21,6 +21,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.pmw.tinylog.Logger;
 
+/**
+ * Simple controller class for primary.fxml.
+ */
 public class FXMLController implements Initializable {
 
     @FXML

@@ -1,11 +1,19 @@
 package fitnessTracker2;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.Duration;
 import java.time.LocalDate;
 
-@lombok.Data
-@lombok.AllArgsConstructor
-@lombok.NoArgsConstructor
+/**
+ * Simple class to hold all needed information about an Exercise Session.
+ * Getters/Setters and Constructors generated with Lombok.
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ExerciseSession {
 
     private Integer code;

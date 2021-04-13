@@ -19,9 +19,19 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Class to Handle Json Save/Load.
+ */
 public class JsonHandler {
 
 
+    /**
+     * @param fileType The Type of the file that needs to be loaded, enum.
+     * @param loadDefault Boolean, whatever the default values need to be loaded.
+     * @param file The Filepath to the desired file.
+     * @return Whatever the file reading was successful.
+     * @throws IOException on IOException.
+     */
     public static boolean load(JsonHandlerEnum fileType, Boolean loadDefault, File file) throws IOException{
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -125,6 +135,11 @@ public class JsonHandler {
         return false;
     }
 
+    /**
+     * @param fileType The Type of the file that needs to be saved, enum.
+     * @return Boolean, whatever the saving was successful or not.
+     * @throws IOException on IOException.
+     */
     public static boolean save(JsonHandlerEnum fileType, File filePath) throws IOException{
 
         ObjectMapper objectMapper = new ObjectMapper();

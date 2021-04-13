@@ -9,3 +9,5 @@ target/
 sessionSaveTest.json
 
 test.json
+
+.gradle/

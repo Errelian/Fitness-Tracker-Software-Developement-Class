@@ -1,14 +1,25 @@
 package fitnessTracker2;
 
 
+import lombok.Data;
+
 import java.util.ArrayList;
 
-@lombok.Data
+/**
+ * A Wrapper for Exercise. The data is static.
+ */
+@Data
 public class ExerciseWrapper {
 
+    /**
+     * Exercise ArrayList that holds every read Exercise type.
+     */
     public static ArrayList<Exercise> exerciseArrayList;
 
-
+    /**
+     * Simple args constructor.
+     * @param exercise Exercise to be added.
+     */
     public ExerciseWrapper(Exercise exercise){
 
         exerciseArrayList = new ArrayList<Exercise>(){
@@ -19,6 +30,10 @@ public class ExerciseWrapper {
 
     }
 
+    /**
+     * Deprecated method for initializing default values.
+     */
+    @Deprecated
     public static void initialize(){
 
         exerciseArrayList = new ArrayList<Exercise>(){
@@ -41,6 +56,10 @@ public class ExerciseWrapper {
         exerciseArrayList.add(new Exercise("Golf", 317));
     }
 
+    /**
+     * Simple method to add an additional exercise.
+     * @param exercise Exercise to be added.
+     */
     public static void append(Exercise exercise){
         exerciseArrayList.add(exercise);
     }

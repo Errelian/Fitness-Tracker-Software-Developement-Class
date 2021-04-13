@@ -1,8 +1,15 @@
 package fitnessTracker2;
 
-@lombok.Data
-@lombok.AllArgsConstructor
-@lombok.NoArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Simple class for holding all information needed for a profile in one place.
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Profile {
     private String name;
     private Double weight;

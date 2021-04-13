@@ -13,12 +13,22 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
+/**
+ * Simple FXML Controller class for load.fxml.
+ */
 public class LoadFxmlController implements Initializable {
 
+    /**
+     * ChoiceBox for choosing the file Type.
+     */
     @FXML
     public ChoiceBox<JsonHandlerEnum> fileTypeChoiceBox;
 
-
+    /**
+     * The event that fires when the button is pressed.
+     * @param event Event handler for closing the current window.
+     * @throws IOException on IOException.
+     */
     @FXML
     public void loadButtonAction(ActionEvent event) throws IOException {
         JsonHandlerEnum temp;
