@@ -1,3 +1,6 @@
+/**
+ * The module info file.
+ */
 module fitnessTracker2 {
     requires javafx.controls;
     requires javafx.fxml;

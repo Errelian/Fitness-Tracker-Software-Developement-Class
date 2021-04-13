@@ -138,6 +138,7 @@ public class JsonHandler {
     /**
      * @param fileType The Type of the file that needs to be saved, enum.
      * @return Boolean, whatever the saving was successful or not.
+     * @param filePath the path to the file where the data will be saved.
      * @throws IOException on IOException.
      */
     public static boolean save(JsonHandlerEnum fileType, File filePath) throws IOException{

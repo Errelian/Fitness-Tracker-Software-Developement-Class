@@ -12,6 +12,9 @@
         <module name="MissingJavadocPackage" />
         <module name="JavadocType" />
         <module name="JavadocMethod" />
-        <module name="JavadocStyle" />
+        <module name="JavadocStyle" />    
     </module>
+    <module name="BeforeExecutionExclusionFileFilter">
+        <property name="fileNamePattern" value="module\-info\.java$"/>
+    </module>    
 </module>

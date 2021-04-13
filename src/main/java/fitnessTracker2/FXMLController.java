@@ -29,17 +29,6 @@ public class FXMLController implements Initializable {
     @FXML
     private void loadButtonAction(ActionEvent event) {
 
-        /*try {
-
-            JsonHandler.load(JsonHandlerEnum.SESSION);
-
-            Logger.info("Successful load!");
-        }
-        catch(Exception e)
-        {
-            Logger.error("Unsuccessful load!");
-        }*/
-
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/Load.fxml"));
 
