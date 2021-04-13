@@ -1,0 +1,67 @@
+[ {
+  "code" : 0,
+  "name" : "My first exercise!",
+  "startDate" : [ 2021, 4, 9 ],
+  "exerciseDuration" : 0.0,
+  "exerciseType" : {
+    "name" : "Aerobic",
+    "calorieCost" : 457
+  },
+  "burnedCalories" : 0.0,
+  "intensity" : 1.0
+}, {
+  "code" : 1,
+  "name" : "Reggeli Aerobic 1",
+  "startDate" : [ 2021, 4, 6 ],
+  "exerciseDuration" : 7200.000000000,
+  "exerciseType" : {
+    "name" : "Aerobic",
+    "calorieCost" : 457
+  },
+  "burnedCalories" : 914.0,
+  "intensity" : 1.0
+}, {
+  "code" : 2,
+  "name" : "Délutáni Íjászat",
+  "startDate" : [ 2021, 4, 6 ],
+  "exerciseDuration" : 7200.000000000,
+  "exerciseType" : {
+    "name" : "Archery",
+    "calorieCost" : 246
+  },
+  "burnedCalories" : 592.0,
+  "intensity" : 1.0
+}, {
+  "code" : 3,
+  "name" : "Túrázgatás",
+  "startDate" : [ 2021, 4, 6 ],
+  "exerciseDuration" : 9000.000000000,
+  "exerciseType" : {
+    "name" : "Hiking",
+    "calorieCost" : 493
+  },
+  "burnedCalories" : 493.0,
+  "intensity" : 1.0
+}, {
+  "code" : 4,
+  "name" : "Túrázgatás 2",
+  "startDate" : [ 2021, 4, 6 ],
+  "exerciseDuration" : 360.000000000,
+  "exerciseType" : {
+    "name" : "Hiking",
+    "calorieCost" : 493
+  },
+  "burnedCalories" : 493.0,
+  "intensity" : 1.0
+}, {
+  "code" : 5,
+  "name" : "Teszt",
+  "startDate" : null,
+  "exerciseDuration" : 10800.000000000,
+  "exerciseType" : {
+    "name" : "Aerobic",
+    "calorieCost" : 457
+  },
+  "burnedCalories" : 652.9,
+  "intensity" : 1.0
+} ]
