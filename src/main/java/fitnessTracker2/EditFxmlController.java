@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.pmw.tinylog.Logger;
 
@@ -93,7 +94,9 @@ public class EditFxmlController implements Initializable {
 
             try {
 
-                JsonHandler.save(JsonHandlerEnum.TYPE);
+                FileChooser fileChooser = new FileChooser();
+
+                JsonHandler.save(JsonHandlerEnum.TYPE, fileChooser.showSaveDialog(new Stage()));
 
                 final Node source = (Node) event.getSource();
                 final Stage stage = (Stage) source.getScene().getWindow(); //I have no idea why it only works like this

@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.pmw.tinylog.Logger;
 
@@ -52,7 +53,7 @@ public class AddFxmlController implements Initializable {
     }
 
 
-    private boolean validDuration(String Durations){
+    public boolean validDuration(String Durations){
 
         if(Durations != null && !(Durations.equals("")) && InputChecker.onlyFloat(Durations))
         {
@@ -82,11 +83,13 @@ public class AddFxmlController implements Initializable {
         }
     }
 
-    private boolean validDate(LocalDate localDate){
+    public boolean validDate(LocalDate localDate){
 
         if (localDate != null)
         {
             Logger.info("Date successfully read!");
+
+            tempDate = localDate;
             return true;
         }
         else
@@ -181,7 +184,9 @@ public class AddFxmlController implements Initializable {
             ExerciseSessionWrapper.append(tempSession);
             try {
 
-                JsonHandler.save(JsonHandlerEnum.SESSION);
+                FileChooser fileChooser = new FileChooser();
+
+                JsonHandler.save(JsonHandlerEnum.SESSION, fileChooser.showSaveDialog(new Stage()) );
 
                 Logger.info("Successful session saving operation!");
 

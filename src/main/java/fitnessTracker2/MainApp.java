@@ -60,7 +60,7 @@ public class MainApp extends Application {
         Boolean launchChecker = Boolean.TRUE;
         
         try {
-            JsonHandler.load(JsonHandlerEnum.SESSION, true);
+            JsonHandler.load(JsonHandlerEnum.SESSION, true, Paths.get("").toFile());
         }
         catch (Exception e) {
             Logger.error("Session file not found or otherwise inaccessible!");
@@ -71,7 +71,7 @@ public class MainApp extends Application {
 
 
         try {
-            JsonHandler.load(JsonHandlerEnum.TYPE, true);
+            JsonHandler.load(JsonHandlerEnum.TYPE, true, Paths.get("").toFile());
 
         }
         catch (Exception e)
@@ -83,7 +83,7 @@ public class MainApp extends Application {
         }
 
             try {
-                JsonHandler.load(JsonHandlerEnum.PROFILE, true);
+                JsonHandler.load(JsonHandlerEnum.PROFILE, true, Paths.get("").toFile()); //csak hogy a method signiturenek megfeleljen, nem használja
             }
             catch(Exception e)
             {

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,7 +26,9 @@ public class SaveFxmlController implements Initializable {
         {
             temp = fileTypeChoiceBox.getValue();
 
-            JsonHandler.save(temp);
+            FileChooser fileChooser = new FileChooser();
+
+            JsonHandler.save(temp,fileChooser.showSaveDialog(new Stage()));
 
             final Node source = (Node) event.getSource();
             final Stage stage = (Stage) source.getScene().getWindow(); //fogalmam sincs hogy miért csak így jó

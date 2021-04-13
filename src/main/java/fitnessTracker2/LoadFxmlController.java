@@ -5,10 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class LoadFxmlController implements Initializable {
@@ -24,7 +26,9 @@ public class LoadFxmlController implements Initializable {
         {
             temp = fileTypeChoiceBox.getValue();
 
-            JsonHandler.load(temp, false);
+            FileChooser fileChooser = new FileChooser();
+
+            JsonHandler.load(temp, false, fileChooser.showOpenDialog(new Stage()));
 
             final Node source = (Node) event.getSource();
             final Stage stage = (Stage) source.getScene().getWindow(); //fogalmam sincs hogy miért csak így jó
