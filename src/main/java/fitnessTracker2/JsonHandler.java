@@ -7,16 +7,9 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import javafx.scene.Node;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import org.pmw.tinylog.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**

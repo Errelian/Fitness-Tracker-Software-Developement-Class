@@ -1,17 +1,5 @@
 package fitnessTracker2;
 
-import java.net.URL;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.pmw.tinylog.Logger;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Simple controller class for primary.fxml.
