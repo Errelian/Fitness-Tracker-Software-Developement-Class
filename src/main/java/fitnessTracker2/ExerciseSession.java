@@ -18,14 +18,13 @@ public class ExerciseSession {
     private double intensity;
 
     /**
-     * Param constructor.
-     * @param code
-     * @param name
-     * @param startDate
-     * @param exerciseDuration
-     * @param exerciseType
-     * @param burnedCalories
-     * @param intensity
+     * @param code Identifying code.
+     * @param name Simple string.
+     * @param startDate JSR 310 compliant LocalDate object
+     * @param exerciseDuration JSR 310 compliant Duration object
+     * @param exerciseType Object to determine the exercise's type
+     * @param burnedCalories Total burned calories
+     * @param intensity Intensity of the exercise
      */
     public ExerciseSession(Integer code, String name, LocalDate startDate, Duration exerciseDuration, Exercise exerciseType, Double burnedCalories, double intensity) {
         this.code = code;

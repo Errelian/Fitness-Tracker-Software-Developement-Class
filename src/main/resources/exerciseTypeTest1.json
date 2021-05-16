@@ -53,4 +53,15 @@
   },
   "burnedCalories" : 493.0,
   "intensity" : 1.0
+}, {
+  "code" : 5,
+  "name" : "Generic Session",
+  "startDate" : [ 2021, 5, 16 ],
+  "exerciseDuration" : 10800.000000000,
+  "exerciseType" : {
+    "name" : "Football",
+    "calorieCost" : 633
+  },
+  "burnedCalories" : 904.3,
+  "intensity" : 1.0
 } ]
