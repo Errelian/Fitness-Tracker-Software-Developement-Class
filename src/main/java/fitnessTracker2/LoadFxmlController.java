@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Simple FXML Controller class for load.fxml.
+ * Simple FXML Controller class for load.fxml, mainly handles choosing the file type to be loaded.
  */
 public class LoadFxmlController implements Initializable {
 

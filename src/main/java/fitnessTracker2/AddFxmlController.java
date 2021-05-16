@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Controller class for add.fxml.
+ * Controller class for add.fxml. Responsible for creating a new exerciseSession object and saving it.
  */
 public class AddFxmlController implements Initializable {
 

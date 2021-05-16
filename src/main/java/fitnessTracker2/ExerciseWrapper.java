@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.ArrayList;
 
 /**
- * A Wrapper for Exercise. The data is static.
+ * A Wrapper for Exercise. The data is static, so it is in fact a singleton.
  */
 @Data
 public class ExerciseWrapper {

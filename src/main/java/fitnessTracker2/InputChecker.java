@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A Simple class to validate integer and float inputs.
+ * A Simple class to validate integer and float inputs. Uses Regex.
  */
 public class InputChecker {
 

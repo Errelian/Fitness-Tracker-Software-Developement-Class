@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controller class for edit.fxml.
+ * Controller class for edit.fxml. Responsible for adding new exerciseType classes and saving them.
  */
 public class EditFxmlController implements Initializable {
 

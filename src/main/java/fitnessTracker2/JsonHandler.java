@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Class to Handle Json Save/Load.
+ * Class to Handle Json Saving/Loading for this project, can save ExerciseSessions/ExerciseTypes/Profiles.
  */
 public class JsonHandler {
 

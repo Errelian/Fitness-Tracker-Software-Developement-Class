@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Simple Controller class for graph.fxml.
+ * Simple Controller class for graph.fxml. Mainly handles drawing a simple graph.
  */
 public class GraphFxmlController implements Initializable {
 

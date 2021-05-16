@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * FXML controller class for profile.fxml.
+ * FXML controller class for profile.fxml. Mainly handles the creation and saving of new profile objects.
  */
 public class ProfileController implements Initializable {
 

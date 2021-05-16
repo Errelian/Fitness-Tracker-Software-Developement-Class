@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controller class for save.fxml.
+ * Controller class for save.fxml, mainly deals with saving of ExerciseType/ExerciseSession/Profile objects.
  */
 public class SaveFxmlController implements Initializable {
 

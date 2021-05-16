@@ -1,7 +1,7 @@
 package fitnessTracker2;
 
 /**
- * Wrapper class for main.
+ * Wrapper class for main because for some eldritch reason its needed.
  */
 public class MegaMain {
     /**

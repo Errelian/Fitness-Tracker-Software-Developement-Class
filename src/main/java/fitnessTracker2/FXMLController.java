@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Simple controller class for primary.fxml.
+ * Simple controller class for primary.fxml. Mainly handles the loading of other stages.
  */
 public class FXMLController implements Initializable {
 

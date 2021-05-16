@@ -1,7 +1,7 @@
 package fitnessTracker2;
 
 /**
- * Simple class for holding all information needed for a profile in one place.
+ * Simple class for holding all information needed for a profile in one place. Does some calculations.
  */
 public class Profile {
     private String name;
