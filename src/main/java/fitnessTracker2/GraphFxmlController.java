@@ -25,7 +25,7 @@ public class GraphFxmlController implements Initializable {
 
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
 
-        series1.setName("Series 1");
+        series1.setName("Calories Burned by session");
 
         for (int i = 1; i < ExerciseSessionWrapper.exerciseSessionArrayList.size(); i++)
         {
