@@ -126,7 +126,7 @@ public class AddFxmlController implements Initializable {
     }
 
     private boolean validName(){
-        tempName = exerciseSessionNameField.getText(); //bármilyen sztringet elfogad, nem látom értelméd a számok kiszűrésének
+        tempName = exerciseSessionNameField.getText(); //bármilyen sztringet elfogad, nem látom értelmét a számok kiszűrésének
 
         Logger.info("Name, successfully read!");
 

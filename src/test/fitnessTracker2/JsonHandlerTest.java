@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +21,7 @@ class JsonHandlerTest {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
-        File file = new File(classLoader.getResource("sessionTest.json").getFile());
+        File file = new File(Objects.requireNonNull(classLoader.getResource("sessionTest.json")).getFile());
 
         fitnessTracker2.JsonHandler.load(JsonHandlerEnum.SESSION, false, file);
 
@@ -35,7 +36,7 @@ class JsonHandlerTest {
         var file = new File("./test.json");
         ClassLoader classLoader = getClass().getClassLoader();
 
-        fitnessTracker2.JsonHandler.load(JsonHandlerEnum.SESSION, false, new File(classLoader.getResource("sessionTest.json").getFile()));
+        fitnessTracker2.JsonHandler.load(JsonHandlerEnum.SESSION, false, new File(Objects.requireNonNull(classLoader.getResource("sessionTest.json")).getFile()));
 
         ExerciseSession Sess1 = ExerciseSessionWrapper.exerciseSessionArrayList.get(0);
 
