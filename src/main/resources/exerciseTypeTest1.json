@@ -64,4 +64,15 @@
   },
   "burnedCalories" : 904.3,
   "intensity" : 1.0
+}, {
+  "code" : 6,
+  "name" : "Valami",
+  "startDate" : [ 2021, 5, 19 ],
+  "exerciseDuration" : 7200.000000000,
+  "exerciseType" : {
+    "name" : "Tennis",
+    "calorieCost" : 444
+  },
+  "burnedCalories" : 634.3,
+  "intensity" : 1.0
 } ]

@@ -1,13 +1,13 @@
-package fitnessTracker2;
-
+import fitnessTracker2.InputChecker;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class InputCheckerTest {
+public class InputCheckerTest {
 
     @Test
-    void onlyInteger() {
+    public void onlyIntegerTest() {
         assertTrue(InputChecker.onlyInteger("12"));
         assertTrue(InputChecker.onlyInteger("3333"));
         assertTrue(InputChecker.onlyInteger("0"));
@@ -18,7 +18,7 @@ class InputCheckerTest {
     }
 
     @Test
-    void onlyFloat() {
+    public void onlyFloatTest() {
 
         assertTrue(InputChecker.onlyFloat("12.3"));
         assertTrue(InputChecker.onlyFloat("23"));
